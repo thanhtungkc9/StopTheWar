@@ -1,0 +1,10 @@
+﻿  StopTheWar.cpp
+c:\users\sai.prg-training\downloads\tung\stopthewar\stopthewar.cpp(34): warning C4305: 'argument': truncation from 'double' to 'float'
+  GameScene.cpp
+c:\users\sai.prg-training\downloads\tung\stopthewar\gamecontrollers\gamescene.cpp(17): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\sai.prg-training\downloads\tung\stopthewar\gamecontrollers\gamescene.cpp(44): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+c:\users\sai.prg-training\downloads\tung\stopthewar\gamecontrollers\gamescene.cpp(49): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+c:\users\sai.prg-training\downloads\tung\stopthewar\gamecontrollers\gamescene.cpp(52): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+  Generating Code...
+  StopTheWar.vcxproj -> C:\Users\sai.prg-training\Downloads\Tung\StopTheWar\Debug\StopTheWar.exe
+  StopTheWar.vcxproj -> C:\Users\sai.prg-training\Downloads\Tung\StopTheWar\Debug\StopTheWar.pdb (Full PDB)

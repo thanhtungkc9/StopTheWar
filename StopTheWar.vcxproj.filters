@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Objects">
+      <UniqueIdentifier>{4d6a80e8-1f47-4a77-940a-68fa5369e8e5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameControllers">
+      <UniqueIdentifier>{d6b2a282-74e2-40d2-863f-cd1ac4433d0d}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="pch.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Objects\Bar.h">
+      <Filter>Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Objects\GameObject.h">
+      <Filter>Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Objects\Monster.h">
+      <Filter>Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Objects\RenderGameObject.h">
+      <Filter>Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="GameControllers\SceneManager.h">
+      <Filter>GameControllers</Filter>
+    </ClInclude>
+    <ClInclude Include="GameControllers\GameScene.h">
+      <Filter>GameControllers</Filter>
+    </ClInclude>
+    <ClInclude Include="GameControllers\Scene.h">
+      <Filter>GameControllers</Filter>
+    </ClInclude>
+    <ClInclude Include="GameControllers\ResourcesManager.h">
+      <Filter>GameControllers</Filter>
+    </ClInclude>
+    <ClInclude Include="GameControllers\define.h">
+      <Filter>GameControllers</Filter>
+    </ClInclude>
+    <ClInclude Include="GameControllers\Point.h">
+      <Filter>GameControllers</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="pch.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="StopTheWar.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Objects\Bar.cpp">
+      <Filter>Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="Objects\Monster.cpp">
+      <Filter>Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="Objects\RenderGameObject.cpp">
+      <Filter>Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="GameControllers\SceneManager.cpp">
+      <Filter>GameControllers</Filter>
+    </ClCompile>
+    <ClCompile Include="GameControllers\GameScene.cpp">
+      <Filter>GameControllers</Filter>
+    </ClCompile>
+    <ClCompile Include="GameControllers\Scene.cpp">
+      <Filter>GameControllers</Filter>
+    </ClCompile>
+    <ClCompile Include="GameControllers\ResourcesManager.cpp">
+      <Filter>GameControllers</Filter>
+    </ClCompile>
+    <ClCompile Include="GameControllers\Point.cpp">
+      <Filter>GameControllers</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
