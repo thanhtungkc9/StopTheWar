@@ -163,11 +163,13 @@
     <ClInclude Include="GameControllers\ResourcesManager.h" />
     <ClInclude Include="GameControllers\Scene.h" />
     <ClInclude Include="GameControllers\SceneManager.h" />
+    <ClInclude Include="NormalMonster.h" />
     <ClInclude Include="Objects\Bar.h" />
     <ClInclude Include="Objects\GameObject.h" />
     <ClInclude Include="Objects\Monster.h" />
     <ClInclude Include="Objects\RenderGameObject.h" />
     <ClInclude Include="pch.h" />
+    <ClInclude Include="SpecialMonster.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameControllers\GameScene.cpp" />
@@ -175,6 +177,7 @@
     <ClCompile Include="GameControllers\ResourcesManager.cpp" />
     <ClCompile Include="GameControllers\Scene.cpp" />
     <ClCompile Include="GameControllers\SceneManager.cpp" />
+    <ClCompile Include="NormalMonster.cpp" />
     <ClCompile Include="Objects\Bar.cpp" />
     <ClCompile Include="Objects\Monster.cpp" />
     <ClCompile Include="Objects\RenderGameObject.cpp" />
@@ -184,6 +187,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="SpecialMonster.cpp" />
     <ClCompile Include="StopTheWar.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

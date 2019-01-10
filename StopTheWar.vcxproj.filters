@@ -54,6 +54,12 @@
     <ClInclude Include="GameControllers\Point.h">
       <Filter>GameControllers</Filter>
     </ClInclude>
+    <ClInclude Include="NormalMonster.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SpecialMonster.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -85,6 +91,12 @@
     </ClCompile>
     <ClCompile Include="GameControllers\Point.cpp">
       <Filter>GameControllers</Filter>
+    </ClCompile>
+    <ClCompile Include="NormalMonster.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SpecialMonster.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

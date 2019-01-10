@@ -1,7 +1,8 @@
 #pragma once
 #include "Scene.h"
 #include "../Objects/Bar.h"
-#include "../Objects/Monster.h"
+#include "../NormalMonster.h"
+#include "../SpecialMonster.h"
 #include "define.h"
 #include <list>
 class GameScene :public Scene
@@ -14,6 +15,8 @@ private:
 	float m_timeAddMonster = 0;
 
 	int m_lastMouseMoveX, m_lastMouseMoveY;
+
+
 
 public:
 	GameScene();

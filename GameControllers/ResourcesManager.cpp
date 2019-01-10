@@ -30,7 +30,6 @@ void ResourcesManager::LoadResource()
 
 	texture = new sf::Texture();
 	texture->loadFromFile("Resources/Textures/Monsters/YellowRedMonster.png");
-
 	this->m_listTexture.insert(std::pair<eID, sf::Texture*>(eID::REDMONSTER, texture));
 	this->LoadTextureInfo(eID::REDMONSTER, "Resources//Textures//Monsters//YellowRedMonster.txt");
 

@@ -3,24 +3,26 @@
 #include "../GameControllers/ResourcesManager.h"
 #include <string>
 #include "Bar.h"
-class Monster:RenderGameObject
+class Monster:public RenderGameObject
 {
 protected:
 	float m_timePerFrame;
-	int m_currentFrame=1;
-	float m_currentTime=0;
+	int m_currentFrame;
+	float m_currentTime;
 	int m_numFrames; 
-	void CollisionWithScreenBound();
 	
 
 	Bar *m_bar;
-	int HP = 1;
+	int HP;
 public:
-	Monster(float posX, float posY, int direction=Direction::DOWN,std::string filePath="");
-	virtual void Init();
-	virtual void Render(sf::RenderWindow &);
-	virtual void Update(float deltime);
-	virtual sf::Sprite* GetSprite();
-	virtual void Init(std::string filePath);
-	void SetBar(Bar *bar);
+	Monster()	{};
+	virtual void CollisionWithScreenBound()=0;
+	virtual void Init()=0;
+	virtual void Render(sf::RenderWindow &)=0;
+	virtual void Update(float deltime)=0;
+
+	virtual sf::Sprite* GetSprite()=0;
+	virtual void Init(std::string filePath)=0;
+	virtual void SetBar(Bar *bar)=0;
+	virtual void SetTwoBar(Bar *bar1, Bar *bar2)=0;
 };

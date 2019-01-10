@@ -16,7 +16,7 @@ Bar::Bar(int posX, int posY,int direction)
 	Init();
 	m_sprite->setPosition(sf::Vector2f(posX, posY));
 	m_currentDirection = direction;
-	m_sprite->setScale(2, 1);
+	m_sprite->setScale((float)((SCREEN_WIDTH/3)/m_sprite->getLocalBounds().width), 1);
 
 }
 sf::Sprite* Bar::GetSprite()
