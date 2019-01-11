@@ -1,1 +1,24 @@
-﻿C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V140\Microsoft.Cpp.Platform.targets(57,5): error MSB8020: The build tools for v141 (Platform Toolset = 'v141') cannot be found. To build using the v141 build tools, please install v141 build tools.  Alternatively, you may upgrade to the current Visual Studio tools by selecting the Project menu or right-click the solution, and then selecting "Retarget solution".
+﻿  pch.cpp
+  GameScene.cpp
+e:\hoctap\gameloft-leap\gameloft\stopthewar\gamecontrollers\gamescene.cpp(105): fatal error C1010: unexpected end of file while looking for precompiled header. Did you forget to add '#include "pch.h"' to your source?
+  Point.cpp
+e:\hoctap\gameloft-leap\gameloft\stopthewar\gamecontrollers\point.cpp(19): fatal error C1010: unexpected end of file while looking for precompiled header. Did you forget to add '#include "pch.h"' to your source?
+  ResourcesManager.cpp
+e:\hoctap\gameloft-leap\gameloft\stopthewar\gamecontrollers\resourcesmanager.cpp(103): fatal error C1010: unexpected end of file while looking for precompiled header. Did you forget to add '#include "pch.h"' to your source?
+  Scene.cpp
+e:\hoctap\gameloft-leap\gameloft\stopthewar\gamecontrollers\scene.cpp(33): fatal error C1010: unexpected end of file while looking for precompiled header. Did you forget to add '#include "pch.h"' to your source?
+  SceneManager.cpp
+e:\hoctap\gameloft-leap\gameloft\stopthewar\gamecontrollers\scenemanager.cpp(41): fatal error C1010: unexpected end of file while looking for precompiled header. Did you forget to add '#include "pch.h"' to your source?
+  NormalMonster.cpp
+e:\hoctap\gameloft-leap\gameloft\stopthewar\normalmonster.cpp(112): fatal error C1010: unexpected end of file while looking for precompiled header. Did you forget to add '#include "pch.h"' to your source?
+  Bar.cpp
+e:\hoctap\gameloft-leap\gameloft\stopthewar\objects\bar.cpp(77): fatal error C1010: unexpected end of file while looking for precompiled header. Did you forget to add '#include "pch.h"' to your source?
+  Monster.cpp
+e:\hoctap\gameloft-leap\gameloft\stopthewar\objects\monster.cpp(1): fatal error C1010: unexpected end of file while looking for precompiled header. Did you forget to add '#include "pch.h"' to your source?
+  RenderGameObject.cpp
+e:\hoctap\gameloft-leap\gameloft\stopthewar\objects\rendergameobject.cpp(40): fatal error C1010: unexpected end of file while looking for precompiled header. Did you forget to add '#include "pch.h"' to your source?
+  SpecialMonster.cpp
+e:\hoctap\gameloft-leap\gameloft\stopthewar\specialmonster.cpp(115): fatal error C1010: unexpected end of file while looking for precompiled header. Did you forget to add '#include "pch.h"' to your source?
+  StopTheWar.cpp
+e:\hoctap\gameloft-leap\gameloft\stopthewar\stopthewar.cpp(48): fatal error C1010: unexpected end of file while looking for precompiled header. Did you forget to add '#include "pch.h"' to your source?
+  Generating Code...

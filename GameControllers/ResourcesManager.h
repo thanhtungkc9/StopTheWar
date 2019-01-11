@@ -16,6 +16,7 @@ public:
 
 	sf::IntRect GetSourceRect(eID id, std::string name);
 	void LoadTextureInfo(eID id, const char* fileInfoPath);
+	Point GetOriginPoint(eID id, std::string name);
 
 	void releaseTexture(eID id);	
 

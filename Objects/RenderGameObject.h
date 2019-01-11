@@ -20,7 +20,12 @@ public:
 		UP = -2,
 		DOWN = 2
 	};
-
+	enum Status
+	{
+		ALIVE,
+		DESTROYING,
+		DEAD
+	};
 	RenderGameObject();
 	~RenderGameObject();
 

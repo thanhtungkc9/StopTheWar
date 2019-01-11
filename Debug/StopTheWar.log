@@ -1,7 +1,9 @@
-﻿  GameScene.cpp
-c:\users\sai.prg-training\downloads\tung\stopthewar\gamecontrollers\gamescene.cpp(48): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-c:\users\sai.prg-training\downloads\tung\stopthewar\gamecontrollers\gamescene.cpp(53): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-c:\users\sai.prg-training\downloads\tung\stopthewar\gamecontrollers\gamescene.cpp(56): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-c:\users\sai.prg-training\downloads\tung\stopthewar\gamecontrollers\gamescene.cpp(73): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-  StopTheWar.vcxproj -> C:\Users\sai.prg-training\Downloads\Tung\StopTheWar\Debug\StopTheWar.exe
-  StopTheWar.vcxproj -> C:\Users\sai.prg-training\Downloads\Tung\StopTheWar\Debug\StopTheWar.pdb (Full PDB)
+﻿  StopTheWar.cpp
+e:\hoctap\gameloft-leap\gameloft\stopthewar\stopthewar.cpp(38): warning C4305: 'argument': truncation from 'double' to 'float'
+e:\hoctap\gameloft-leap\gameloft\stopthewar\stopthewar.cpp(39): warning C4305: 'argument': truncation from 'double' to 'float'
+e:\hoctap\gameloft-leap\gameloft\stopthewar\stopthewar.cpp(40): warning C4305: 'argument': truncation from 'double' to 'float'
+e:\hoctap\gameloft-leap\gameloft\stopthewar\stopthewar.cpp(52): warning C4305: 'argument': truncation from 'double' to 'float'
+e:\hoctap\gameloft-leap\gameloft\stopthewar\stopthewar.cpp(54): warning C4305: 'argument': truncation from 'double' to 'float'
+e:\hoctap\gameloft-leap\gameloft\stopthewar\stopthewar.cpp(55): warning C4305: 'argument': truncation from 'double' to 'float'
+e:\hoctap\gameloft-leap\gameloft\stopthewar\stopthewar.cpp(56): warning C4305: 'argument': truncation from 'double' to 'float'
+  StopTheWar.vcxproj -> E:\HocTap\Gameloft-LEAP\GameLoft\StopTheWar\Debug\StopTheWar.exe

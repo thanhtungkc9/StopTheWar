@@ -31,7 +31,27 @@ void ResourcesManager::LoadResource()
 	texture = new sf::Texture();
 	texture->loadFromFile("Resources/Textures/Monsters/YellowRedMonster.png");
 	this->m_listTexture.insert(std::pair<eID, sf::Texture*>(eID::REDMONSTER, texture));
-	this->LoadTextureInfo(eID::REDMONSTER, "Resources//Textures//Monsters//YellowRedMonster.txt");
+	this->LoadTextureInfo(eID::REDMONSTER, "Resources//Textures//Monsters//YellowRedMonster.txt");\
+
+
+	texture = new sf::Texture();
+	texture->loadFromFile("Resources/Textures/Army/blackarmy_knife_move.png");
+	this->m_listTexture.insert(std::pair<eID, sf::Texture*>(eID::BLACKARMY, texture));
+	this->LoadTextureInfo(eID::BLACKARMY, "Resources//Textures//Army//blackarmy_knife_move.txt");
+
+	texture = new sf::Texture();
+	texture->loadFromFile("Resources/Textures/Army/blackarmy_knife_run_feet.png");
+	this->m_listTexture.insert(std::pair<eID, sf::Texture*>(eID::BLACKARMY_RUN_FEET, texture));
+	this->LoadTextureInfo(eID::BLACKARMY_RUN_FEET, "Resources//Textures//Army//blackarmy_knife_run_feet.txt");
+	
+		texture = new sf::Texture();
+	texture->loadFromFile("Resources/Textures/Army/blackarmy_knife_attack.png");
+	this->m_listTexture.insert(std::pair<eID, sf::Texture*>(eID::BLACKARMY_MELEE_ATTACK, texture));
+	this->LoadTextureInfo(eID::BLACKARMY_MELEE_ATTACK, "Resources//Textures//Army//blackarmy_walk_feet.txt");
+
+	texture->loadFromFile("Resources/Textures/Army/blackarmy_walk_feet.png");
+	this->m_listTexture.insert(std::pair<eID, sf::Texture*>(eID::BLACKARMY_WALK_FEET, texture));
+	this->LoadTextureInfo(eID::BLACKARMY_WALK_FEET, "Resources//Textures//Army//blackarmy_walk_feet.txt");
 
 /*
 	sp = new Sprite("Resources/AnimationInfo/guard_number2.png");
@@ -59,6 +79,10 @@ sf::IntRect ResourcesManager::GetSourceRect(eID id, std::string name)
 	return m_sourceRectList[id][name];
 }
 
+Point ResourcesManager::GetOriginPoint(eID id, std::string name)
+{
+	return m_originPointList[id][name];
+}
 void ResourcesManager::LoadTextureInfo(eID id, const char* fileInfoPath)
 {
 	FILE* file;
@@ -69,12 +93,11 @@ void ResourcesManager::LoadTextureInfo(eID id, const char* fileInfoPath)
 		while (!feof(file))
 		{
 			sf::IntRect rect =sf::IntRect();
-			
-			char name[100];
-			fgets(name, 100, file);
-			
-			fscanf(file, "%s %d %d %d %d", &name, &rect.left, &rect.top, &rect.width, &rect.height);	
+			Point pivot;			
+			char name[100];			
+			fscanf(file, "%s %d %d %d %d %d %d", &name, &rect.left, &rect.top, &rect.width, &rect.height, &pivot.x, &pivot.y);	
 			m_sourceRectList[id][std::string(name)] = rect;
+			m_originPointList[id][std::string(name)] = pivot;
 		}
 	}
 

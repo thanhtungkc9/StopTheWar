@@ -23,13 +23,13 @@
     <ProjectGuid>{1E8FB79F-F8FE-4149-B3C6-8E4683D515E0}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>StopTheWar</RootNamespace>
-    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.17134.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v140</PlatformToolset>
+    <PlatformToolset>v141</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
@@ -157,6 +157,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Animation.h" />
+    <ClInclude Include="Army_Knife.h" />
     <ClInclude Include="GameControllers\define.h" />
     <ClInclude Include="GameControllers\GameScene.h" />
     <ClInclude Include="GameControllers\Point.h" />
@@ -172,6 +174,8 @@
     <ClInclude Include="SpecialMonster.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Animation.cpp" />
+    <ClCompile Include="Army_Knife.cpp" />
     <ClCompile Include="GameControllers\GameScene.cpp" />
     <ClCompile Include="GameControllers\Point.cpp" />
     <ClCompile Include="GameControllers\ResourcesManager.cpp" />

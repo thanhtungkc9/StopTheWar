@@ -15,7 +15,7 @@ NormalMonster::NormalMonster(float posX, float posY, int direction, std::string 
 	m_sprite->setPosition(posX, posY);
 	m_currentDirection = direction;
 
-	switch (direction)
+	/*switch (direction)
 	{
 	case Direction::DOWN:
 		m_sprite->setColor(sf::Color(255, 0, 0, 255));
@@ -25,22 +25,23 @@ NormalMonster::NormalMonster(float posX, float posY, int direction, std::string 
 		break;
 	default:
 		break;
-	}
+	}*/
 }
 void NormalMonster::Init(std::string filePath)
 {
 
 	m_sprite = new sf::Sprite();
 
-	m_texture = ResourcesManager::getInstance()->GetTexture(eID::REDMONSTER);
+	m_texture = ResourcesManager::getInstance()->GetTexture(eID::BLACKARMY);
 	m_sprite->setTexture(*m_texture);
 	m_speed = 100.0f;
 	m_currentDirection = DOWN;
 	m_currentTime = 0;
 	m_timePerFrame = 0.1f;
-	m_numFrames = 8;
+	m_numFrames = 20;
 	HP = 1;
-	m_sprite->setTextureRect(sf::IntRect((m_currentFrame - 1) * 51, 52, 51, 51));
+	//m_sprite->setTextureRect(sf::IntRect((m_currentFrame - 1) * 51, 52, 51, 51));
+	m_sprite->setScale(0.5, 0.50);
 }
 void NormalMonster::SetBar(Bar *bar)
 {
@@ -52,7 +53,7 @@ void NormalMonster::SetTwoBar(Bar *bar1,Bar *bar2)
 }
 void NormalMonster::Update(float deltime)
 {
-	m_sprite->setPosition(m_sprite->getPosition().x, m_sprite->getPosition().y + m_speed * deltime*(m_currentDirection / 2));
+//	m_sprite->setPosition(m_sprite->getPosition().x, m_sprite->getPosition().y + m_speed * deltime*(m_currentDirection / 2));
 	//CollisionWithScreenBound();
 
 	if (m_numFrames == 1) return;
@@ -61,15 +62,13 @@ void NormalMonster::Update(float deltime)
 		if (m_currentTime >= m_timePerFrame)
 		{
 
-			if (m_currentFrame < m_numFrames)
-			{
-				m_currentFrame += 1;
-				if (m_currentDirection == DOWN)
-					m_sprite->setTextureRect(ResourcesManager::getInstance()->GetSourceRect(eID::REDMONSTER, "down" + std::to_string(m_currentFrame)));
-				else
-					m_sprite->setTextureRect(ResourcesManager::getInstance()->GetSourceRect(eID::REDMONSTER, "up" + std::to_string(m_currentFrame)));
-			}
-			else
+		
+			
+			m_sprite->setTextureRect(ResourcesManager::getInstance()->GetSourceRect(eID::BLACKARMY, "blackarmy_knife_move" + std::to_string(m_currentFrame)));
+			sf::IntRect rect;
+			rect = ResourcesManager::getInstance()->GetSourceRect(eID::BLACKARMY, "blackarmy_knife_move" + std::to_string(m_currentFrame));
+			m_currentFrame += 1;
+			if (m_currentFrame >= m_numFrames)
 			{
 				m_currentFrame = 0;
 			}
@@ -82,13 +81,13 @@ void NormalMonster::Update(float deltime)
 		}
 	}
 
-	if (m_sprite->getGlobalBounds().intersects(m_bar->GetSprite()->getGlobalBounds()) && HP>0)
+	/*if (m_sprite->getGlobalBounds().intersects(m_bar->GetSprite()->getGlobalBounds()) && HP>0)
 	{
 		HP -= 1;
 		if (m_currentDirection == DOWN) m_currentDirection = UP;
 		else
 			m_currentDirection = DOWN;
-	}
+	}*/
 }
 sf::Sprite* NormalMonster::GetSprite()
 {
