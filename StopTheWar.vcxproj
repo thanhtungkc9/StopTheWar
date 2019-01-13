@@ -159,12 +159,15 @@
   <ItemGroup>
     <ClInclude Include="Animation.h" />
     <ClInclude Include="Army_Knife.h" />
+    <ClInclude Include="Army_Shotgun.h" />
     <ClInclude Include="GameControllers\define.h" />
     <ClInclude Include="GameControllers\GameScene.h" />
     <ClInclude Include="GameControllers\Point.h" />
     <ClInclude Include="GameControllers\ResourcesManager.h" />
     <ClInclude Include="GameControllers\Scene.h" />
     <ClInclude Include="GameControllers\SceneManager.h" />
+    <ClInclude Include="GameGlobal.h" />
+    <ClInclude Include="Lazer.h" />
     <ClInclude Include="NormalMonster.h" />
     <ClInclude Include="Objects\Bar.h" />
     <ClInclude Include="Objects\GameObject.h" />
@@ -176,11 +179,14 @@
   <ItemGroup>
     <ClCompile Include="Animation.cpp" />
     <ClCompile Include="Army_Knife.cpp" />
+    <ClCompile Include="Army_Shotgun.cpp" />
     <ClCompile Include="GameControllers\GameScene.cpp" />
     <ClCompile Include="GameControllers\Point.cpp" />
     <ClCompile Include="GameControllers\ResourcesManager.cpp" />
     <ClCompile Include="GameControllers\Scene.cpp" />
     <ClCompile Include="GameControllers\SceneManager.cpp" />
+    <ClCompile Include="GameGlobal.cpp" />
+    <ClCompile Include="Lazer.cpp" />
     <ClCompile Include="NormalMonster.cpp" />
     <ClCompile Include="Objects\Bar.cpp" />
     <ClCompile Include="Objects\Monster.cpp" />

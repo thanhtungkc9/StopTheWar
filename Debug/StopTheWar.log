@@ -1,9 +1,7 @@
-﻿  StopTheWar.cpp
-e:\hoctap\gameloft-leap\gameloft\stopthewar\stopthewar.cpp(38): warning C4305: 'argument': truncation from 'double' to 'float'
-e:\hoctap\gameloft-leap\gameloft\stopthewar\stopthewar.cpp(39): warning C4305: 'argument': truncation from 'double' to 'float'
-e:\hoctap\gameloft-leap\gameloft\stopthewar\stopthewar.cpp(40): warning C4305: 'argument': truncation from 'double' to 'float'
-e:\hoctap\gameloft-leap\gameloft\stopthewar\stopthewar.cpp(52): warning C4305: 'argument': truncation from 'double' to 'float'
-e:\hoctap\gameloft-leap\gameloft\stopthewar\stopthewar.cpp(54): warning C4305: 'argument': truncation from 'double' to 'float'
-e:\hoctap\gameloft-leap\gameloft\stopthewar\stopthewar.cpp(55): warning C4305: 'argument': truncation from 'double' to 'float'
-e:\hoctap\gameloft-leap\gameloft\stopthewar\stopthewar.cpp(56): warning C4305: 'argument': truncation from 'double' to 'float'
+﻿  GameScene.cpp
+e:\hoctap\gameloft-leap\gameloft\stopthewar\gamecontrollers\gamescene.cpp(54): warning C4244: 'argument': conversion from 'T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
   StopTheWar.vcxproj -> E:\HocTap\Gameloft-LEAP\GameLoft\StopTheWar\Debug\StopTheWar.exe

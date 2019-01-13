@@ -8,7 +8,7 @@ private:
 	sf::Sprite *m_spriteAnim;
 	bool isLoop;
 	bool isPause;
-	int m_currentFrame;
+	int m_currentFrame=0;
 	int m_totalFrame;
 	float m_timePerFrame;
 	float m_currentTime;
@@ -23,6 +23,8 @@ public:
 	int GetCurrentFrameIndex();
 	int GetTotalFrame();
 	void Update(float deltime);
-	void Render(sf::RenderWindow &rd);
+	void Render(sf::RenderWindow &rd,sf::Vector2f = sf::Vector2f(0,0));
+	std::string GetNameAnimation();
+	eID GeteID();
 };
 

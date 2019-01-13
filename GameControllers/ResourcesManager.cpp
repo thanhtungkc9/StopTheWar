@@ -36,8 +36,8 @@ void ResourcesManager::LoadResource()
 
 	texture = new sf::Texture();
 	texture->loadFromFile("Resources/Textures/Army/blackarmy_knife_move.png");
-	this->m_listTexture.insert(std::pair<eID, sf::Texture*>(eID::BLACKARMY, texture));
-	this->LoadTextureInfo(eID::BLACKARMY, "Resources//Textures//Army//blackarmy_knife_move.txt");
+	this->m_listTexture.insert(std::pair<eID, sf::Texture*>(eID::BLACKARMY_KNIFE_MOVE, texture));
+	this->LoadTextureInfo(eID::BLACKARMY_KNIFE_MOVE, "Resources//Textures//Army//blackarmy_knife_move.txt");
 
 	texture = new sf::Texture();
 	texture->loadFromFile("Resources/Textures/Army/blackarmy_knife_run_feet.png");
@@ -46,22 +46,35 @@ void ResourcesManager::LoadResource()
 	
 		texture = new sf::Texture();
 	texture->loadFromFile("Resources/Textures/Army/blackarmy_knife_attack.png");
-	this->m_listTexture.insert(std::pair<eID, sf::Texture*>(eID::BLACKARMY_MELEE_ATTACK, texture));
-	this->LoadTextureInfo(eID::BLACKARMY_MELEE_ATTACK, "Resources//Textures//Army//blackarmy_walk_feet.txt");
+	this->m_listTexture.insert(std::pair<eID, sf::Texture*>(eID::BLACKARMY_KNIFE_ATTACK, texture));
+	this->LoadTextureInfo(eID::BLACKARMY_KNIFE_ATTACK, "Resources//Textures//Army//blackarmy_knife_attack.txt");
 
+	texture = new sf::Texture();
 	texture->loadFromFile("Resources/Textures/Army/blackarmy_walk_feet.png");
 	this->m_listTexture.insert(std::pair<eID, sf::Texture*>(eID::BLACKARMY_WALK_FEET, texture));
 	this->LoadTextureInfo(eID::BLACKARMY_WALK_FEET, "Resources//Textures//Army//blackarmy_walk_feet.txt");
 
-/*
-	sp = new Sprite("Resources/AnimationInfo/guard_number2.png");
-	this->_listSprite.insert(pair<eID, Sprite*>(eID::GUARD_NUMBER2, sp));
-	this->loadSpriteInfo(eID::GUARD_NUMBER2, "Resources//AnimationInfo//guard_number2.txt");
+	texture = new sf::Texture();
+	texture->loadFromFile("Resources/Textures/Army/blackarmy_shotgun_move.png");
+	this->m_listTexture.insert(std::pair<eID, sf::Texture*>(eID::BLACKARMY_SHOTGUN_MOVE, texture));
+	this->LoadTextureInfo(eID::BLACKARMY_SHOTGUN_MOVE, "Resources//Textures//Army//blackarmy_shotgun_move.txt");
 
-	sp = new Sprite("Resources/AnimationInfo/Items.png", RECT(), NULL, NULL, D3DCOLOR_XRGB(255, 0, 255));
-	this->_listSprite.insert(pair<eID, Sprite*>(eID::ITEMS, sp));
-	this->loadSpriteInfo(eID::ITEMS, "Resources//AnimationInfo//Items.txt");
-	*/
+	
+	texture = new sf::Texture();
+	texture->loadFromFile("Resources/Textures/Army/blackarmy_shotgun_shoot.png");
+	this->m_listTexture.insert(std::pair<eID, sf::Texture*>(eID::BLACKARMY_SHOTGUN_SHOOT, texture));
+	this->LoadTextureInfo(eID::BLACKARMY_SHOTGUN_SHOOT, "Resources//Textures//Army//blackarmy_shotgun_shoot.txt");
+
+	texture = new sf::Texture();
+	texture->loadFromFile("Resources/Textures/Effects/Explosion.png");
+	this->m_listTexture.insert(std::pair<eID, sf::Texture*>(eID::EXPLOSION, texture));
+	this->LoadTextureInfo(eID::EXPLOSION, "Resources//Textures//Effects//Explosion.txt");
+
+	texture = new sf::Texture();
+	texture->loadFromFile("Resources/Textures/Lazer/Lazer.png");
+	this->m_listTexture.insert(std::pair<eID, sf::Texture*>(eID::LAZER, texture));
+	this->LoadTextureInfo(eID::LAZER, "Resources//Textures//Lazer//Lazer.txt");
+
 }
 
 

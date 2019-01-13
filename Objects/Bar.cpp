@@ -17,6 +17,7 @@ Bar::Bar(int posX, int posY,int direction)
 	m_sprite->setPosition(sf::Vector2f(posX, posY));
 	m_currentDirection = direction;
 	m_sprite->setScale((float)((SCREEN_WIDTH/3)/m_sprite->getLocalBounds().width), 1);
+	m_type = RenderGameObject::Type::BARRIER;
 
 }
 sf::Sprite* Bar::GetSprite()
@@ -28,6 +29,7 @@ void Bar::Init()
 	Init(BAR_TEXTURE);
 	m_speed = BAR_SPEED;
 	m_currentDirection = RIGHT;
+	m_type = RenderGameObject::Type::BARRIER;
 }
 void Bar::Init(std::string filePath)
 {

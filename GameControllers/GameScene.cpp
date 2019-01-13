@@ -3,9 +3,12 @@
 
 GameScene::GameScene()
 {
-	m_bar1 = new Bar(0,200,RenderGameObject::Direction::LEFT);
-	m_bar2 = new Bar(300, 300, RenderGameObject::Direction::RIGHT);
-	
+	m_bar1 = new Bar(0,270,RenderGameObject::Direction::LEFT);
+	m_bar2 = new Bar(300, 325, RenderGameObject::Direction::RIGHT);
+	lazer = new Lazer();
+	lazer->Init();
+	lazer->SetPosition(0, 300);
+	m_timeAddBlackArmy = 2.0;
 }
 
 GameScene::~GameScene()
@@ -25,6 +28,39 @@ void GameScene::Update(float deltime)
 {	
 	m_bar1->Update(deltime);
 	m_bar2->Update(deltime);
+	lazer->Update(deltime);
+	for (std::list<RenderGameObject*>::iterator it = m_listBlackArmy.begin(); it != m_listBlackArmy.end(); )
+	{
+		if ((*it)->GetStatus()!=RenderGameObject::Status::DEAD)
+		(*it)->Update(deltime);
+		else
+		{
+			RenderGameObject* tmp = *it;
+			it++;
+			m_listBlackArmy.remove(tmp);
+			delete tmp;
+			
+			continue;
+		}
+		it++;
+	}
+	
+
+	if (m_currentTime >= m_timeAddBlackArmy)
+	{
+		RenderGameObject *newBlackArmy=new Army_Knife();		
+		newBlackArmy->Init();
+		std::cout << m_listBlackArmy.size();
+		newBlackArmy->SetPosition(newBlackArmy->GetSpriteAnim()->getGlobalBounds().width/2+ newBlackArmy->GetSpriteAnim()->getGlobalBounds().width*(rand()% ARMY_NUM_LANE ), SCREEN_HEIGHT+25);
+		m_listBlackArmy.push_back(newBlackArmy);
+		m_currentTime = 0;
+	}
+	else
+	{
+		m_currentTime += deltime;
+	}
+	CheckCollision();
+	
 }
 
 void GameScene::Init()
@@ -35,14 +71,42 @@ void GameScene::Init()
 	m_score->setFont(*m_textFont);
 	m_score->setString("Score: ");
 	m_score->setPosition(SCREEN_WIDTH/2-50, SCREEN_HEIGHT/2-50);
+
 }
 
 void GameScene::Render(sf::RenderWindow &rd)
 {	
 	m_bar1->Render(rd);
 	m_bar2->Render(rd);
-
+	lazer->Render(rd);
+	for (std::list<RenderGameObject*>::iterator it = m_listBlackArmy.begin(); it != m_listBlackArmy.end(); it++)
+	{
+		(*it)->Render(rd);
+	}
+	
 	m_score->setPosition(150, 150);
 	//rd.draw(*m_score);
 	
+}
+
+void GameScene::CheckCollision()
+{
+	for (std::list<RenderGameObject*>::iterator it = m_listBlackArmy.begin(); it != m_listBlackArmy.end();it++ )
+	{
+		if ((*it)->GetSpriteAnim()->getGlobalBounds().intersects(m_bar1->GetSprite()->getGlobalBounds()))
+		{
+			(*it)->Collision(m_bar1);
+			m_bar1->Collision((*it));
+		}
+		if ((*it)->GetSpriteAnim()->getGlobalBounds().intersects(m_bar2->GetSprite()->getGlobalBounds()))
+		{
+			(*it)->Collision(m_bar2);
+			m_bar2->Collision((*it));
+		}
+		if ((*it)->GetSpriteAnim()->getGlobalBounds().intersects(lazer->GetSpriteAnim()->getGlobalBounds()))
+		{
+			(*it)->Collision(lazer);
+			lazer->Collision((*it));
+		}
+	}
 }

@@ -32,7 +32,7 @@ void NormalMonster::Init(std::string filePath)
 
 	m_sprite = new sf::Sprite();
 
-	m_texture = ResourcesManager::getInstance()->GetTexture(eID::BLACKARMY);
+	m_texture = ResourcesManager::getInstance()->GetTexture(eID::BLACKARMY_KNIFE_MOVE);
 	m_sprite->setTexture(*m_texture);
 	m_speed = 100.0f;
 	m_currentDirection = DOWN;
@@ -64,9 +64,9 @@ void NormalMonster::Update(float deltime)
 
 		
 			
-			m_sprite->setTextureRect(ResourcesManager::getInstance()->GetSourceRect(eID::BLACKARMY, "blackarmy_knife_move" + std::to_string(m_currentFrame)));
+			m_sprite->setTextureRect(ResourcesManager::getInstance()->GetSourceRect(eID::BLACKARMY_KNIFE_MOVE, "blackarmy_knife_move" + std::to_string(m_currentFrame)));
 			sf::IntRect rect;
-			rect = ResourcesManager::getInstance()->GetSourceRect(eID::BLACKARMY, "blackarmy_knife_move" + std::to_string(m_currentFrame));
+			rect = ResourcesManager::getInstance()->GetSourceRect(eID::BLACKARMY_KNIFE_MOVE, "blackarmy_knife_move" + std::to_string(m_currentFrame));
 			m_currentFrame += 1;
 			if (m_currentFrame >= m_numFrames)
 			{
