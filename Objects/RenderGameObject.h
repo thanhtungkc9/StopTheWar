@@ -3,6 +3,8 @@
 #include <iostream>
 #include <string>
 #include "../Animation.h"
+
+
 class RenderGameObject :public GameObject
 {
 protected:
@@ -19,6 +21,7 @@ protected:
 	int m_currentDirection;
 	int m_status;
 	int m_type;
+
 
 public:
 	enum Direction
@@ -53,9 +56,14 @@ public:
 	virtual void Update(float deltime);
 
 	void SetDirection(int direction);
+	int GetDirection();
+	void SetSpeed(float speed);
 	void SetVelocity(float velX, float velY);
 	int GetStatus();
+	void SetStatus(int status);
 	int GetType();
+	Animation* GetAnimation();
+
 
 	 void SetPosition(int posX, int posY);
 	 void SetPosition(sf::Vector2f position);

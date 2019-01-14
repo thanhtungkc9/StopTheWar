@@ -2,6 +2,7 @@
 #include "Objects/RenderGameObject.h"
 #include "Animation.h"
 #include "Objects/RenderGameObject.h"
+#include "Bullet.h"
 class Army_Shotgun :public RenderGameObject
 {
 protected:

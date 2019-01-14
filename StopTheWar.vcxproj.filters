@@ -30,9 +30,6 @@
     <ClInclude Include="Objects\GameObject.h">
       <Filter>Objects</Filter>
     </ClInclude>
-    <ClInclude Include="Objects\Monster.h">
-      <Filter>Objects</Filter>
-    </ClInclude>
     <ClInclude Include="Objects\RenderGameObject.h">
       <Filter>Objects</Filter>
     </ClInclude>
@@ -54,12 +51,6 @@
     <ClInclude Include="GameControllers\Point.h">
       <Filter>GameControllers</Filter>
     </ClInclude>
-    <ClInclude Include="NormalMonster.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="SpecialMonster.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Animation.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -78,6 +69,12 @@
     <ClInclude Include="GameTime.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Bullet.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GameMap.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -87,9 +84,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Objects\Bar.cpp">
-      <Filter>Objects</Filter>
-    </ClCompile>
-    <ClCompile Include="Objects\Monster.cpp">
       <Filter>Objects</Filter>
     </ClCompile>
     <ClCompile Include="Objects\RenderGameObject.cpp">
@@ -110,12 +104,6 @@
     <ClCompile Include="GameControllers\Point.cpp">
       <Filter>GameControllers</Filter>
     </ClCompile>
-    <ClCompile Include="NormalMonster.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="SpecialMonster.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Animation.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -132,6 +120,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="GameTime.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Bullet.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GameMap.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

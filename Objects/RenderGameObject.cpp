@@ -48,6 +48,14 @@ void RenderGameObject::SetDirection(int direction)
 {
 	m_currentDirection = direction;
 }
+int RenderGameObject::GetDirection()
+{
+	return m_currentDirection ;
+}
+void RenderGameObject::SetSpeed( float speed)
+{
+	m_speed = speed;;
+}
 void RenderGameObject::SetVelocity(float velX,float velY)
 {
 	m_velocityX = velX;
@@ -57,10 +65,20 @@ int RenderGameObject::GetStatus()
 {
 	return m_status;
 }
+void RenderGameObject::SetStatus(int status)
+{
+	m_status = status;;
+}
+
 
 int RenderGameObject::GetType()
 {
 	return m_type;
+}
+
+Animation* RenderGameObject::GetAnimation()
+{
+	return m_currentAnim;
 }
 void RenderGameObject::Collision(RenderGameObject* collisionObject)
 {
@@ -81,3 +99,5 @@ void RenderGameObject::SetPosition(int posX, int posY)
  {
 	return m_position ;
  }
+
+

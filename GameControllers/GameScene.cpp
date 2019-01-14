@@ -28,30 +28,16 @@ void GameScene::Update(float deltime)
 	m_bar1->Update(deltime);
 	m_bar2->Update(deltime);
 
-	for (std::list<RenderGameObject*>::iterator it = m_listBlackArmy.begin(); it != m_listBlackArmy.end(); )
-	{
-		if ((*it)->GetStatus()!=RenderGameObject::Status::DEAD)
-		(*it)->Update(deltime);
-		else
-		{
-			RenderGameObject* tmp = *it;
-			it++;
-			m_listBlackArmy.remove(tmp);
-			delete tmp;
-			
-			continue;
-		}
-		it++;
-	}
+	m_gameMap->Update(deltime);
 	
 
 	if (m_currentTime >= m_timeAddBlackArmy)
 	{
-		RenderGameObject *newBlackArmy=new Army_Knife();		
-		newBlackArmy->Init();
-		std::cout << m_listBlackArmy.size();
-		newBlackArmy->SetPosition(newBlackArmy->GetSpriteAnim()->getGlobalBounds().width/2+ newBlackArmy->GetSpriteAnim()->getGlobalBounds().width*(rand()% ARMY_NUM_LANE ), SCREEN_HEIGHT+25);
-		m_listBlackArmy.push_back(newBlackArmy);
+		RenderGameObject *newArmy=new Army_Shotgun();		
+		newArmy->Init();
+
+		newArmy->SetPosition(newArmy->GetSpriteAnim()->getGlobalBounds().width/2+ newArmy->GetSpriteAnim()->getGlobalBounds().width*(rand()% ARMY_NUM_LANE ), SCREEN_HEIGHT+25);
+		m_gameMap->AddArmy(newArmy);
 		m_currentTime = 0;
 	}
 	else
@@ -71,6 +57,8 @@ void GameScene::Init()
 	m_score->setString("Score: ");
 	m_score->setPosition(SCREEN_WIDTH/2-50, SCREEN_HEIGHT/2-50);
 
+
+	m_gameMap = new GameMap();
 	GameTime::GetInstance()->StartCounter();
 
 }
@@ -80,10 +68,7 @@ void GameScene::Render(sf::RenderWindow &rd)
 	m_bar1->Render(rd);
 	m_bar2->Render(rd);
 	
-	for (std::list<RenderGameObject*>::iterator it = m_listBlackArmy.begin(); it != m_listBlackArmy.end(); it++)
-	{
-		(*it)->Render(rd);
-	}
+	m_gameMap->Render(rd);
 	
 	float timee = GameTime::GetInstance()->GetTimeInSecond() - GameTime::GetInstance()->GetStartTime();
 
@@ -95,7 +80,8 @@ void GameScene::Render(sf::RenderWindow &rd)
 
 void GameScene::CheckCollision()
 {
-	for (std::list<RenderGameObject*>::iterator it = m_listBlackArmy.begin(); it != m_listBlackArmy.end();it++ )
+	std::list<RenderGameObject*> listArmy = m_gameMap->GetListArmy();
+	for (std::list<RenderGameObject*>::iterator it = listArmy.begin(); it != listArmy.end();it++ )
 	{
 		if ((*it)->GetSpriteAnim()->getGlobalBounds().intersects(m_bar1->GetSprite()->getGlobalBounds()))
 		{
@@ -107,6 +93,28 @@ void GameScene::CheckCollision()
 			(*it)->Collision(m_bar2);
 			m_bar2->Collision((*it));
 		}
-
+		for (std::list<RenderGameObject*>::iterator it1 = listArmy.begin(); it1 != listArmy.end(); it1++)
+		{
+			if (*it1 != *it && (*it1)->GetSpriteAnim()->getGlobalBounds().intersects((*it)->GetSpriteAnim()->getGlobalBounds()))
+			{
+				(*it)->Collision(*it1);
+				(*it1)->Collision(*it);
+			}
+		}
+	}
+	std::list<Bullet*> listArmyBullet = m_gameMap->GetListArmyBullet();
+	for (std::list<Bullet*>::iterator bullet = listArmyBullet.begin(); bullet != listArmyBullet.end(); bullet++)
+	{
+		if ((*bullet)->GetSpriteAnim()->getGlobalBounds().intersects(m_bar1->GetSprite()->getGlobalBounds()))
+		{
+			(*bullet)->Collision(m_bar1);
+			m_bar1->Collision((*bullet));
+		}
+		if ((*bullet)->GetSpriteAnim()->getGlobalBounds().intersects(m_bar2->GetSprite()->getGlobalBounds()))
+		{
+			(*bullet)->Collision(m_bar2);
+			m_bar2->Collision((*bullet));
+		}
 	}
 }
+

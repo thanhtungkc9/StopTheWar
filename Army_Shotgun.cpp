@@ -40,7 +40,7 @@ void Army_Shotgun::Init()
 
 	m_status = ALIVE;
 	m_type = Type::BLACKARMY;
-	m_distanceMove = 200.0f;
+	m_distanceMove = 100.0f;
 }
 
 void Army_Shotgun::Scale()
@@ -103,10 +103,12 @@ void Army_Shotgun::Update(float deltime)
 	Scale();
 
 	if (m_currentAnim == m_attackingAnim)
-	{
+	{	
 		if (m_currentAnim->GetCurrentFrameIndex() == m_currentAnim->GetTotalFrame() - 1)
 		{
 			m_currentAnim = m_movingAnim;
+			
+
 			ChangeDirection();
 		
 		}

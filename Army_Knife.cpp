@@ -21,7 +21,7 @@ Army_Knife::~Army_Knife()
 void Army_Knife::Init()
 {
 	m_movingAnim = new Animation(eID::BLACKARMY_KNIFE_MOVE, 20, "blackarmy_knife_move", 0.05f);
-	m_attackingAnim = new Animation(eID::BLACKARMY_KNIFE_ATTACK, 15, "blackarmy_knife_attack", 1.0f);
+	m_attackingAnim = new Animation(eID::BLACKARMY_KNIFE_ATTACK, 15, "blackarmy_knife_attack", 0.04f);
 	m_movingFeetAnim = new Animation(eID::BLACKARMY_WALK_FEET, 20, "blackarmy_walk_feet", 0.05f);
 	m_Explosion = new Animation(eID::EXPLOSION, 24, "Explosion", 0.04f);
 
@@ -105,9 +105,30 @@ void Army_Knife::Update(float deltime)
 			m_movingAnim->GetSprite()->setRotation(m_movingAnim->GetSprite()->getRotation() + 15);
 			m_attackingAnim->GetSprite()->setRotation(m_attackingAnim->GetSprite()->getRotation() + 15);
 			m_movingFeetAnim->GetSprite()->setRotation(m_movingFeetAnim->GetSprite()->getRotation() + 15);
+			if (m_HP <= 0)
+			{
+				m_currentAnim->GetSprite()->scale(0.98, 0.98);
+				m_movingFeetAnim->GetSprite()->scale(0.98,0.98);
+			}
 		}
 		
-		if (m_frameRotation == 1) m_position -= sf::Vector2f(0, m_distanceTeleport);
+		if (m_frameRotation == 1)
+			if (m_HP>0) m_position -= sf::Vector2f(0, m_distanceTeleport);
+			else
+			{
+				m_status = RenderGameObject::Status::DEAD;
+			}
+	/*	if (m_HP <= 0)
+		{
+			m_currentAnim->GetSprite()->scale(0.9, 0.9);
+			if (m_frameRotation == 1)
+				m_status = RenderGameObject::Status::DEAD;
+		}
+		else
+		{
+			if (m_frameRotation == 1)
+				m_position -= sf::Vector2f(0, m_distanceTeleport);
+		}*/
 	}
 	else
 	RenderGameObject::Update(deltime);
@@ -115,7 +136,7 @@ void Army_Knife::Update(float deltime)
 	{
 		m_movingFeetAnim->Update(deltime);
 		}
-	Scale();
+	if (m_HP>0) Scale();
 
 	if (m_currentAnim == m_Explosion && m_currentAnim->GetCurrentFrameIndex()==m_currentAnim->GetTotalFrame()-1)
 	{
@@ -133,26 +154,27 @@ void Army_Knife::Collision(RenderGameObject* collisionObject)
 	switch (collisionObject->GetType())
 	{
 	case  RenderGameObject::Type::BARRIER:
+		
 		if (m_status == RenderGameObject::Status::ALIVE && m_HP >= 0
 			&&m_frameRotation<=-15)
 		{
 			m_HP -= 1;
-			if (m_HP == 0)
-			{
-				ChangeDirection();
-				m_frameRotation = 0;
-				return;
-			}
-			else if (m_HP < 0)
-			{
-				m_frameRotation = 48 * m_framePerRotation;
-				m_distanceTeleport = -m_distanceTeleport;
-				return;
-			}
 			m_frameRotation = 48 * m_framePerRotation;
 		
 		}
+		//ChangeDirection();
 		break;
+	case RenderGameObject::Type::BLACKARMY:
+		if (collisionObject->GetDirection() == m_currentDirection
+			||m_position.x!=collisionObject->GetPosition().x) 
+			return;
+		if (m_currentAnim == m_movingAnim
+			&& abs(m_position.y - collisionObject->GetPosition().y) < m_currentAnim->GetSprite()->getGlobalBounds().height  )
+		{
+			m_currentAnim = m_attackingAnim;
+			m_speed = 0;
+		}
+			break;
 	case RenderGameObject::Type::LAZER:
 		if (
 	//		m_position.y > collisionObject->GetSpriteAnim()->getGlobalBounds().top
