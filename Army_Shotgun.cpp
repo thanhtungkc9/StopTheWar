@@ -20,16 +20,16 @@ Army_Shotgun::~Army_Shotgun()
 
 void Army_Shotgun::Init()
 {
-	m_movingAnim = new Animation(eID::BLACKARMY_SHOTGUN_MOVE, 20, "blackarmy_shotgun_move", 0.15f);
+	m_movingAnim = new Animation(eID::BLACKARMY_SHOTGUN_MOVE, 20, "blackarmy_shotgun_move", 0.05f);
 	m_attackingAnim = new Animation(eID::BLACKARMY_SHOTGUN_SHOOT,5, "blackarmy_shotgun_shoot", 0.5f);
-	m_movingFeetAnim = new Animation(eID::BLACKARMY_WALK_FEET, 20, "blackarmy_walk_feet", 0.15f);
+	m_movingFeetAnim = new Animation(eID::BLACKARMY_WALK_FEET, 20, "blackarmy_walk_feet", 0.05f);
 
 	m_currentAnim = m_movingAnim;
 
 
 
 	Scale();
-	m_speed = 50.0f;
+	m_speed = 100.0f;
 	m_currentDirection = UP;
 	m_HP = 1;
 	m_position = sf::Vector2f(0, 0);

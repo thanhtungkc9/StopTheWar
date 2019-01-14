@@ -1,7 +1,4 @@
-﻿  GameScene.cpp
-e:\hoctap\gameloft-leap\gameloft\stopthewar\gamecontrollers\gamescene.cpp(54): warning C4244: 'argument': conversion from 'T' to 'int', possible loss of data
-          with
-          [
-              T=float
-          ]
-  StopTheWar.vcxproj -> E:\HocTap\Gameloft-LEAP\GameLoft\StopTheWar\Debug\StopTheWar.exe
+﻿  Army_Knife.cpp
+c:\users\sai.prg-training\downloads\tung\stopthewar\army_knife.cpp(52): warning C4101: 'ratioHeight': unreferenced local variable
+  StopTheWar.vcxproj -> C:\Users\sai.prg-training\Downloads\Tung\StopTheWar\Debug\StopTheWar.exe
+  StopTheWar.vcxproj -> C:\Users\sai.prg-training\Downloads\Tung\StopTheWar\Debug\StopTheWar.pdb (Full PDB)

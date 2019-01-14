@@ -3,11 +3,10 @@
 
 GameScene::GameScene()
 {
-	m_bar1 = new Bar(0,270,RenderGameObject::Direction::LEFT);
-	m_bar2 = new Bar(300, 325, RenderGameObject::Direction::RIGHT);
-	lazer = new Lazer();
-	lazer->Init();
-	lazer->SetPosition(0, 300);
+	m_bar1 = new Bar(0,275,RenderGameObject::Direction::LEFT);
+	m_bar2 = new Bar(300, 425, RenderGameObject::Direction::RIGHT);
+
+
 	m_timeAddBlackArmy = 2.0;
 }
 
@@ -28,7 +27,7 @@ void GameScene::Update(float deltime)
 {	
 	m_bar1->Update(deltime);
 	m_bar2->Update(deltime);
-	lazer->Update(deltime);
+
 	for (std::list<RenderGameObject*>::iterator it = m_listBlackArmy.begin(); it != m_listBlackArmy.end(); )
 	{
 		if ((*it)->GetStatus()!=RenderGameObject::Status::DEAD)
@@ -72,18 +71,23 @@ void GameScene::Init()
 	m_score->setString("Score: ");
 	m_score->setPosition(SCREEN_WIDTH/2-50, SCREEN_HEIGHT/2-50);
 
+	GameTime::GetInstance()->StartCounter();
+
 }
 
 void GameScene::Render(sf::RenderWindow &rd)
 {	
 	m_bar1->Render(rd);
 	m_bar2->Render(rd);
-	lazer->Render(rd);
+	
 	for (std::list<RenderGameObject*>::iterator it = m_listBlackArmy.begin(); it != m_listBlackArmy.end(); it++)
 	{
 		(*it)->Render(rd);
 	}
 	
+	float timee = GameTime::GetInstance()->GetTimeInSecond() - GameTime::GetInstance()->GetStartTime();
+
+	m_score->setString("time: "+ std::to_string(timee));
 	m_score->setPosition(150, 150);
 	//rd.draw(*m_score);
 	
@@ -103,10 +107,6 @@ void GameScene::CheckCollision()
 			(*it)->Collision(m_bar2);
 			m_bar2->Collision((*it));
 		}
-		if ((*it)->GetSpriteAnim()->getGlobalBounds().intersects(lazer->GetSpriteAnim()->getGlobalBounds()))
-		{
-			(*it)->Collision(lazer);
-			lazer->Collision((*it));
-		}
+
 	}
 }

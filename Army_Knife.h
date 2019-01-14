@@ -12,6 +12,13 @@ protected:
 	Animation *m_Explosion;
 
 	int m_HP;
+	int m_framePerRotation;
+	int m_frameRotation;
+
+	float m_distanceTeleport;
+
+	float m_lastVelocityX;
+	float m_lastVelocityY;
 public:
 	Army_Knife();
 	~Army_Knife();

@@ -3,7 +3,7 @@
 #define SCREEN_HEIGHT 700
 #define LIMIT_FPS 120 
 
-#define ARMY_NUM_LANE 8
+#define ARMY_NUM_LANE 12
 enum eID
 {
 	BAR,

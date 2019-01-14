@@ -21,6 +21,8 @@ public:
 	void releaseTexture(eID id);	
 
 	~ResourcesManager(void);
+
+
 private:
 	ResourcesManager(void);
 	static ResourcesManager* _instance;

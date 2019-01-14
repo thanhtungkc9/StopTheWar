@@ -20,9 +20,9 @@ Army_Knife::~Army_Knife()
 
 void Army_Knife::Init()
 {
-	m_movingAnim = new Animation(eID::BLACKARMY_KNIFE_MOVE, 20, "blackarmy_knife_move", 0.2f);
+	m_movingAnim = new Animation(eID::BLACKARMY_KNIFE_MOVE, 20, "blackarmy_knife_move", 0.05f);
 	m_attackingAnim = new Animation(eID::BLACKARMY_KNIFE_ATTACK, 15, "blackarmy_knife_attack", 1.0f);
-	m_movingFeetAnim = new Animation(eID::BLACKARMY_WALK_FEET, 20, "blackarmy_walk_feet", 0.2f);
+	m_movingFeetAnim = new Animation(eID::BLACKARMY_WALK_FEET, 20, "blackarmy_walk_feet", 0.05f);
 	m_Explosion = new Animation(eID::EXPLOSION, 24, "Explosion", 0.04f);
 
 	m_currentAnim = m_movingAnim;
@@ -30,10 +30,13 @@ void Army_Knife::Init()
 
 
 	Scale();
-	m_speed = 100.0f;
+	m_speed = 70.0f;
 	m_currentDirection = UP;
-	m_HP = 1;
+	m_HP = 2;
 	m_position = sf::Vector2f(0, 0);
+	m_framePerRotation = 2;
+	m_distanceTeleport = 73;
+
 	
 	m_movingAnim->GetSprite()->setRotation(-90);
 	m_movingFeetAnim->GetSprite()->setRotation(-90);
@@ -94,6 +97,19 @@ void Army_Knife::Update(float deltime)
 		m_velocityY = m_speed;
 		break;
 	}
+	m_frameRotation -= 1;
+	if (m_frameRotation > 0)
+	{
+		if (m_frameRotation % m_framePerRotation == 0)
+		{
+			m_movingAnim->GetSprite()->setRotation(m_movingAnim->GetSprite()->getRotation() + 15);
+			m_attackingAnim->GetSprite()->setRotation(m_attackingAnim->GetSprite()->getRotation() + 15);
+			m_movingFeetAnim->GetSprite()->setRotation(m_movingFeetAnim->GetSprite()->getRotation() + 15);
+		}
+		
+		if (m_frameRotation == 1) m_position -= sf::Vector2f(0, m_distanceTeleport);
+	}
+	else
 	RenderGameObject::Update(deltime);
 	if (m_currentAnim == m_movingAnim)
 	{
@@ -117,10 +133,24 @@ void Army_Knife::Collision(RenderGameObject* collisionObject)
 	switch (collisionObject->GetType())
 	{
 	case  RenderGameObject::Type::BARRIER:
-		if (m_status == RenderGameObject::Status::ALIVE && m_HP > 0)
+		if (m_status == RenderGameObject::Status::ALIVE && m_HP >= 0
+			&&m_frameRotation<=-15)
 		{
 			m_HP -= 1;
-			ChangeDirection();
+			if (m_HP == 0)
+			{
+				ChangeDirection();
+				m_frameRotation = 0;
+				return;
+			}
+			else if (m_HP < 0)
+			{
+				m_frameRotation = 48 * m_framePerRotation;
+				m_distanceTeleport = -m_distanceTeleport;
+				return;
+			}
+			m_frameRotation = 48 * m_framePerRotation;
+		
 		}
 		break;
 	case RenderGameObject::Type::LAZER:

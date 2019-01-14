@@ -7,13 +7,13 @@
 #include "../Army_Shotgun.h"
 #include "define.h"
 #include "../Lazer.h"
+#include "../GameTime.h"
 #include <list>
 class GameScene :public Scene
 {
 private:
 	Bar* m_bar1;
 	Bar* m_bar2;
-	Lazer *lazer;
 	std::list<RenderGameObject*> m_listBlackArmy;
 	float m_currentTime = 0;
 	float m_timeAddBlackArmy = 0;
