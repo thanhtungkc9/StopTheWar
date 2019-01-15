@@ -26,7 +26,7 @@ void Bullet::Init()
 
 
 	//Scale();
-	m_speed = 200.0f;
+	m_speed = 400.0f;
 	m_currentDirection = UP;
 	m_position = sf::Vector2f(0, 0);
 	m_HP = 1;
@@ -67,7 +67,7 @@ void Bullet::Update(float deltime)
 		m_velocityY = m_speed;
 		break;
 	}
-	if (m_status == RenderGameObject::Status::DESTROYING)
+	if (m_status == RenderGameObject::Status::DESTROYING && m_HP>0)
 	{
 		m_timeToActive -= deltime;
 		if (m_timeToActive <= 0) m_status = RenderGameObject::Status::ALIVE;
@@ -79,8 +79,8 @@ void Bullet::Update(float deltime)
 		m_status = RenderGameObject::Status::DEAD;
 	}
 
-	//if (m_currentAnim->GetSprite()->getGlobalBounds().top >= SCREEN_HEIGHT || m_currentAnim->GetSprite()->getGlobalBounds().top + m_currentAnim->GetSprite()->getGlobalBounds().height <= 0)
-	//	m_status = RenderGameObject::Status::DEAD;
+	if (m_currentAnim->GetSprite()->getGlobalBounds().top >= SCREEN_HEIGHT || m_currentAnim->GetSprite()->getGlobalBounds().top + m_currentAnim->GetSprite()->getGlobalBounds().height <= 0)
+		m_status = RenderGameObject::Status::DEAD;
 
 }
 
@@ -93,14 +93,17 @@ void Bullet::Collision(RenderGameObject* collisionObject)
 		if (m_position.y >= collisionObject->GetSprite()->getGlobalBounds().top
 			&& m_position.y <= collisionObject->GetSprite()->getGlobalBounds().top +  collisionObject->GetSprite()->getGlobalBounds().height)
 		{
-			if (m_status == RenderGameObject::Status::ALIVE && m_HP >= 0)
+			if (m_status == RenderGameObject::Status::ALIVE && m_HP > 0)
 			{
 				m_HP -= 1;
+				GameGlobal::getInstance()->SetScore(GameGlobal::getInstance()->GetScore() + 1);
 			}
-			if (m_HP <= 0)
+			if (m_HP <= 0 && m_status== RenderGameObject::Status::ALIVE)
 			{
 				m_currentAnim = m_Explosion;
 				m_speed = 0;
+				m_status = RenderGameObject::Status::DESTROYING;
+				
 			}
 		}
 		break;
@@ -115,3 +118,18 @@ void Bullet::Collision(RenderGameObject* collisionObject)
 	}
 }
 
+void Bullet::SetDirection(int direction)
+{
+	RenderGameObject::SetDirection(direction);
+	switch (direction)
+	{
+	case RenderGameObject::Direction::DOWN:
+		m_movingAnim->GetSprite()->setRotation(90);
+	
+		break;
+	case RenderGameObject::Direction::UP:
+		m_movingAnim->GetSprite()->setRotation(-90);
+
+		break;
+	}
+}

@@ -24,6 +24,7 @@ public:
 	virtual void Update(float deltime);
 	virtual void Collision(RenderGameObject* collisionObject);
 
+	virtual void SetDirection(int direction);
 	void Scale();
 };
 

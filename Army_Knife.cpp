@@ -35,7 +35,7 @@ void Army_Knife::Init()
 	m_HP = 2;
 	m_position = sf::Vector2f(0, 0);
 	m_framePerRotation = 2;
-	m_distanceTeleport = 73;
+	m_distanceTeleport = 78;
 
 	
 	m_movingAnim->GetSprite()->setRotation(-90);
@@ -122,6 +122,7 @@ void Army_Knife::Update(float deltime)
 			else
 			{
 				m_status = RenderGameObject::Status::DEAD;
+				GameGlobal::getInstance()->SetScore(GameGlobal::getInstance()->GetScore() + 1);
 			}
 	/*	if (m_HP <= 0)
 		{
@@ -146,9 +147,10 @@ void Army_Knife::Update(float deltime)
 	if (m_currentAnim == m_Explosion && m_currentAnim->GetCurrentFrameIndex()==m_currentAnim->GetTotalFrame()-1)
 	{
 		m_status = RenderGameObject::Status::DEAD;
+
 	}
 
-	if (m_currentAnim->GetSprite()->getGlobalBounds().top >= SCREEN_HEIGHT || m_currentAnim->GetSprite()->getGlobalBounds().top + m_currentAnim->GetSprite()->getGlobalBounds().height <= 0)
+	if (m_currentAnim->GetSprite()->getGlobalBounds().top >= SCREEN_HEIGHT+50 || m_currentAnim->GetSprite()->getGlobalBounds().top + m_currentAnim->GetSprite()->getGlobalBounds().height <=-50)
 		m_status = RenderGameObject::Status::DEAD;
 	
 }
@@ -186,6 +188,7 @@ void Army_Knife::Collision(RenderGameObject* collisionObject)
 			m_status = RenderGameObject::Status::DESTROYING;
 			m_currentAnim = m_Explosion;
 			m_speed = 0;
+			GameGlobal::getInstance()->SetHealth(GameGlobal::getInstance()->GetHealth() - 1);
 		}
 		break;
 	case RenderGameObject::Type::LAZER:

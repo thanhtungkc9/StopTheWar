@@ -11,6 +11,7 @@ Animation::~Animation()
 {
 	
 	delete m_spriteAnim;
+	m_spriteAnim = NULL;
 }
 
 Animation::Animation(eID texture_eID, int totalFrame, std::string nameAnimation, float timePerFrame)
@@ -74,7 +75,7 @@ void Animation::Render(sf::RenderWindow &rd,sf::Vector2f position)
 	sf::RectangleShape rectangle(sf::Vector2f(m_spriteAnim->getGlobalBounds().width, m_spriteAnim->getGlobalBounds().height));
 	rectangle.setPosition(m_spriteAnim->getGlobalBounds().left,m_spriteAnim->getGlobalBounds().top);
 
-//	rd.draw(rectangle);
+	//rd.draw(rectangle);
 	rd.draw(*m_spriteAnim);
 }
 

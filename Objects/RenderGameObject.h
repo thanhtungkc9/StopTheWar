@@ -3,6 +3,7 @@
 #include <iostream>
 #include <string>
 #include "../Animation.h"
+#include "../GameGlobal.h"
 
 
 class RenderGameObject :public GameObject

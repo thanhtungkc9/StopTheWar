@@ -1,6 +1,6 @@
 #include "Bar.h"
 #define BAR_TEXTURE "Resources/Textures/Bar/Bar.png"
-#define BAR_SPEED 150.0f;
+#define BAR_SPEED 250.0f;
 #include "../GameControllers/define.h"
 Bar::Bar()
 {
@@ -16,7 +16,7 @@ Bar::Bar(int posX, int posY,int direction)
 	Init();
 	m_sprite->setPosition(sf::Vector2f(posX, posY));
 	m_currentDirection = direction;
-	m_sprite->setScale((float)((SCREEN_WIDTH/3)/m_sprite->getLocalBounds().width), 1);
+	m_sprite->setScale((float)((SCREEN_WIDTH/5)/m_sprite->getLocalBounds().width), 0.75);
 	m_type = RenderGameObject::Type::BARRIER;
 
 }
@@ -30,6 +30,8 @@ void Bar::Init()
 	m_speed = BAR_SPEED;
 	m_currentDirection = RIGHT;
 	m_type = RenderGameObject::Type::BARRIER;
+	m_isMovingLeft = false;
+	m_isMovingRight = false;
 }
 void Bar::Init(std::string filePath)
 {
@@ -38,23 +40,16 @@ void Bar::Init(std::string filePath)
 void Bar::Update(float deltime)
 {
 	//m_sprite->setPosition(m_sprite->getPosition().x+ m_speed * deltime*m_currentDirection, m_sprite->getPosition().y);
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
+	if (isMovingLeft())
 	{
-		if (m_currentDirection==LEFT)
-		m_sprite->setPosition(m_sprite->getPosition().x - deltime*m_speed, m_sprite->getPosition().y);
-		else
-
-			m_sprite->setPosition(m_sprite->getPosition().x + deltime*m_speed, m_sprite->getPosition().y);
+		m_sprite->setPosition(m_sprite->getPosition().x - m_speed * deltime, m_sprite->getPosition().y);
 	}
 	else
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
+		if (isMovingRight())
 		{
-			if (m_currentDirection == LEFT)
-				m_sprite->setPosition(m_sprite->getPosition().x + deltime*m_speed, m_sprite->getPosition().y);
-			else
-
-				m_sprite->setPosition(m_sprite->getPosition().x - deltime*m_speed , m_sprite->getPosition().y);
+			m_sprite->setPosition(m_sprite->getPosition().x + m_speed * deltime, m_sprite->getPosition().y);
 		}
+
 
 	CollisionWithScreenBound();
 }
@@ -75,4 +70,23 @@ void Bar::CollisionWithScreenBound()
 	{
 		m_sprite->setPosition(0, m_sprite->getPosition().y);
 	}
+}
+
+
+bool Bar::isMovingLeft()
+{
+	return m_isMovingLeft;
+}
+void Bar::SetMovingLeft(bool flag)
+{
+	m_isMovingLeft = flag;
+}
+
+bool Bar::isMovingRight()
+{
+	return m_isMovingRight;
+}
+void Bar::SetMovingRight(bool flag)
+{
+	m_isMovingRight = flag;
 }

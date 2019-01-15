@@ -41,7 +41,7 @@ void Army_Shotgun::Init()
 
 	m_status = ALIVE;
 	m_type = Type::BLACKARMY;
-	m_distanceMove = 100.0f;
+	m_distanceMove = 80.0f;
 }
 
 void Army_Shotgun::Scale()
@@ -145,9 +145,28 @@ void Army_Shotgun::Collision(RenderGameObject* collisionObject)
 			m_status = RenderGameObject::Status::DESTROYING;
 			m_currentAnim = m_Explosion;
 			m_speed = 0;
+			GameGlobal::getInstance()->SetHealth(GameGlobal::getInstance()->GetHealth() - 1);
 		}
 
 
+		break;
+	}
+}
+
+void Army_Shotgun::SetDirection(int direction)
+{
+	RenderGameObject::SetDirection(direction);
+	switch (direction)
+	{
+	case RenderGameObject::Direction::DOWN:
+		m_movingAnim->GetSprite()->setRotation(90);
+		m_movingFeetAnim->GetSprite()->setRotation(90);
+		m_attackingAnim->GetSprite()->setRotation(90);
+		break;
+	case RenderGameObject::Direction::UP:
+		m_movingAnim->GetSprite()->setRotation(-90);
+		m_movingFeetAnim->GetSprite()->setRotation(-90);
+		m_attackingAnim->GetSprite()->setRotation(-90);
 		break;
 	}
 }

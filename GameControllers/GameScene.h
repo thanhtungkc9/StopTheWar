@@ -8,6 +8,7 @@
 #include "../Bullet.h"
 #include "../GameTime.h"
 #include "../GameMap.h"
+#include "../GameGlobal.h"
 #include <list>
 class GameScene :public Scene
 {

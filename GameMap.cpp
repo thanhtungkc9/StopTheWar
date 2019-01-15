@@ -66,8 +66,13 @@ void GameMap::Update(float deltime)
 			{
 				Bullet *bullet = new Bullet();
 				bullet->Init();
+				if ((*it)->GetDirection()==RenderGameObject::Direction::UP)
 				bullet->SetPosition((*it)->GetAnimation()->GetSprite()->getGlobalBounds().left + (*it)->GetAnimation()->GetSprite()->getGlobalBounds().width *0.75,
 					(*it)->GetAnimation()->GetSprite()->getGlobalBounds().top);
+				else
+					bullet->SetPosition((*it)->GetAnimation()->GetSprite()->getGlobalBounds().left + (*it)->GetAnimation()->GetSprite()->getGlobalBounds().width *0.25,
+					(*it)->GetAnimation()->GetSprite()->getGlobalBounds().top + (*it)->GetAnimation()->GetSprite()->getGlobalBounds().height);
+				bullet->SetDirection((*it)->GetDirection());
 				m_listArmyBullet.push_back(bullet);
 				(*it)->SetStatus(RenderGameObject::Status::DESTROYING);
 			}
