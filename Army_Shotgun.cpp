@@ -30,7 +30,7 @@ void Army_Shotgun::Init()
 
 
 	Scale();
-	m_speed = 100.0f;
+	m_speed = ARMY_SHOTGUN_SPEED;
 	m_currentDirection = UP;
 	m_HP = 1;
 	m_position = sf::Vector2f(0, 0);
@@ -41,7 +41,7 @@ void Army_Shotgun::Init()
 
 	m_status = ALIVE;
 	m_type = Type::BLACKARMY;
-	m_distanceMove = 80.0f;
+	m_distanceMove = ARMY_SHOTGUN_DISTANCE_MOVE_SHOOT;
 }
 
 void Army_Shotgun::Scale()

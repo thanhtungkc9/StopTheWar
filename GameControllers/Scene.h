@@ -5,7 +5,7 @@ class Scene
 {
 protected:
 	sf::Sprite *m_spriteBackGround;
-	sf::Text *m_textureBackGround;
+	sf::Texture *m_textureBackGround;
 
 	sf::Font *m_textFont;
 	sf::Text *m_score;

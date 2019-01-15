@@ -90,6 +90,12 @@ void GameScene::Update(float deltime)
 
 void GameScene::Init()
 {
+	m_textureBackGround = ResourcesManager::getInstance()->GetTexture(eID::TOP_LANE_BACKGROUND);
+	m_spriteBackGround = new sf::Sprite();
+	m_spriteBackGround->setTexture(*m_textureBackGround);
+	m_spriteBackGround->setScale((float) SCREEN_WIDTH / m_spriteBackGround->getLocalBounds().width, (float) SCREEN_HEIGHT / m_spriteBackGround->getLocalBounds().height);
+
+
 	m_textFont = new sf::Font();
 	m_textFont->loadFromFile("Resources/Fonts/arial.ttf");
 	m_score = new sf::Text();
@@ -108,6 +114,7 @@ void GameScene::Init()
 
 void GameScene::Render(sf::RenderWindow &rd)
 {	
+	rd.draw(*m_spriteBackGround);
 	m_bar1->Render(rd);
 	m_bar2->Render(rd);
 	

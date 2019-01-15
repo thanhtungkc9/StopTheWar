@@ -30,12 +30,12 @@ void Army_Knife::Init()
 
 
 	Scale();
-	m_speed = 70.0f;
+	m_speed = ARMY_KNIFE_SPEED;
 	m_currentDirection = UP;
 	m_HP = 2;
 	m_position = sf::Vector2f(0, 0);
 	m_framePerRotation = 2;
-	m_distanceTeleport = 78;
+	m_distanceTeleport = ARMY_KNIFE_TELEPORT_DISTANCE;
 
 	
 	m_movingAnim->GetSprite()->setRotation(-90);

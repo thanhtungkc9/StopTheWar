@@ -26,7 +26,7 @@ void Bullet::Init()
 
 
 	//Scale();
-	m_speed = 400.0f;
+	m_speed = BULLET_SPEED;
 	m_currentDirection = UP;
 	m_position = sf::Vector2f(0, 0);
 	m_HP = 1;

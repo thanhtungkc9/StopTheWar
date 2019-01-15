@@ -23,6 +23,7 @@ private:
 
 	int m_lastMouseMoveX, m_lastMouseMoveY;
 
+	bool Army_Lane[2][ARMY_NUM_LANE];
 
 
 public:

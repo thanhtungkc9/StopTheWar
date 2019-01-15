@@ -22,6 +22,10 @@ void ResourcesManager::LoadResource()
 
 	sf::Texture* texture = NULL;
 
+	texture = new sf::Texture();
+	texture->loadFromFile("Resources/Textures/Backgrounds/Land.png");
+	this->m_listTexture.insert(std::pair<eID, sf::Texture*>(eID::TOP_LANE_BACKGROUND, texture));	
+
 
 	texture = new sf::Texture();
 	texture->loadFromFile("Resources/Textures/Bar/Bar.png");
