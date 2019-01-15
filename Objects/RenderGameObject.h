@@ -42,7 +42,8 @@ public:
 		BLACKARMY,
 		REDARMY,
 		BARRIER,
-		LAZER
+		LAZER,
+		BULLET
 	};
 	RenderGameObject();
 	~RenderGameObject();
@@ -55,12 +56,15 @@ public:
 	virtual void Render(sf::RenderWindow &) ;
 	virtual void Update(float deltime);
 
-	void SetDirection(int direction);
+	virtual void SetDirection(int direction);
 	int GetDirection();
+
 	void SetSpeed(float speed);
 	void SetVelocity(float velX, float velY);
+
 	int GetStatus();
 	void SetStatus(int status);
+
 	int GetType();
 	Animation* GetAnimation();
 

@@ -57,6 +57,7 @@ void Army_Knife::Scale()
 	m_attackingAnim->GetSprite()->setScale(ratioWidth, ratioWidth);
 	m_movingFeetAnim->GetSprite()->setScale(ratioWidth, ratioWidth);
 }
+
 void Army_Knife::ChangeDirection()
 {
 	if(m_currentDirection == RenderGameObject::Direction::UP)
@@ -67,15 +68,18 @@ void Army_Knife::ChangeDirection()
 	m_attackingAnim->GetSprite()->setRotation(m_attackingAnim->GetSprite()->getRotation() + 180);
 	m_movingFeetAnim->GetSprite()->setRotation(m_movingFeetAnim->GetSprite()->getRotation() + 180);
 }
+
 sf::Sprite* Army_Knife::GetSprite()
 {
 	return m_sprite;
 
 }
+
 sf::Sprite* Army_Knife::GetSpriteAnim()
 {
 	return m_currentAnim->GetSprite();
 }
+
 void Army_Knife::Render(sf::RenderWindow &rd)
 {
 	if (m_currentAnim == m_movingAnim)
@@ -97,6 +101,7 @@ void Army_Knife::Update(float deltime)
 		m_velocityY = m_speed;
 		break;
 	}
+
 	m_frameRotation -= 1;
 	if (m_frameRotation > 0)
 	{
@@ -175,6 +180,14 @@ void Army_Knife::Collision(RenderGameObject* collisionObject)
 			m_speed = 0;
 		}
 			break;
+	case RenderGameObject::Type::BULLET:
+		if (m_HP >= 0 && collisionObject->GetStatus() == RenderGameObject::Status::ALIVE)
+		{
+			m_status = RenderGameObject::Status::DESTROYING;
+			m_currentAnim = m_Explosion;
+			m_speed = 0;
+		}
+		break;
 	case RenderGameObject::Type::LAZER:
 		if (
 	//		m_position.y > collisionObject->GetSpriteAnim()->getGlobalBounds().top
@@ -189,3 +202,22 @@ void Army_Knife::Collision(RenderGameObject* collisionObject)
 	}
  }
 
+void Army_Knife::SetDirection(int direction)
+{
+	RenderGameObject::SetDirection(direction);
+	switch (direction)
+	{
+	case RenderGameObject::Direction::DOWN:
+		m_movingAnim->GetSprite()->setRotation(90);
+		m_movingFeetAnim->GetSprite()->setRotation(90);
+		m_attackingAnim->GetSprite()->setRotation(90);
+		m_distanceTeleport = -abs(m_distanceTeleport);
+		break;
+	case RenderGameObject::Direction::UP:
+		m_movingAnim->GetSprite()->setRotation(-90);
+		m_movingFeetAnim->GetSprite()->setRotation(-90);
+		m_attackingAnim->GetSprite()->setRotation(-90);
+		m_distanceTeleport = abs(m_distanceTeleport);
+		break;
+	}
+}

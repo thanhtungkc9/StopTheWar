@@ -1,7 +1,7 @@
 #pragma once
 #define SCREEN_WIDTH 400
 #define SCREEN_HEIGHT 700
-#define LIMIT_FPS 120 
+#define LIMIT_FPS 60
 
 #define ARMY_NUM_LANE 10
 enum eID

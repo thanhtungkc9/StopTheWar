@@ -10,6 +10,7 @@ protected:
 	Animation *m_movingFeetAnim;
 	Animation *m_attackingAnim;
 
+	Animation *m_Explosion;
 	int m_HP;
 
 	float m_distanceMove;

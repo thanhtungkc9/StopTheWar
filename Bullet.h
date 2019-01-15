@@ -11,7 +11,7 @@ protected:
 	Animation *m_Explosion;
 
 	int m_HP;
-
+	float m_timeToActive;
 public:
 	Bullet();
 	~Bullet();

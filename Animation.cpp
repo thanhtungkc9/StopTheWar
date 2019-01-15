@@ -9,6 +9,7 @@ Animation::Animation()
 
 Animation::~Animation()
 {
+	
 	delete m_spriteAnim;
 }
 
@@ -27,8 +28,8 @@ Animation::Animation(eID texture_eID, int totalFrame, std::string nameAnimation,
 
 	m_totalFrame = totalFrame;
 	m_timePerFrame = timePerFrame;
-	m_currentTime = m_timePerFrame;
-
+	m_currentTime = 0;
+	m_frameUpdate = (int)(m_timePerFrame / (1.0 / LIMIT_FPS));
 }
 sf::Sprite* Animation::GetSprite()
 {
@@ -45,7 +46,7 @@ int Animation::GetTotalFrame()
 void Animation::Update(float deltime)
 {
 	if (m_totalFrame == 1) return;
-	if (m_currentTime >= m_timePerFrame)
+	if (m_currentFrameCount >= m_frameUpdate)
 	{
 		m_spriteAnim->setTextureRect(ResourcesManager::getInstance()->GetSourceRect(m_eID, m_nameAnimation + std::to_string(m_currentFrame)));
 		sf::IntRect rect;
@@ -60,11 +61,11 @@ void Animation::Update(float deltime)
 			m_currentFrame = 0;
 		}
 
-		m_currentTime = 0;
+		m_currentFrameCount = 0;
 	}
 	else
 	{
-		m_currentTime += (1.0 / LIMIT_FPS);
+		m_currentFrameCount +=1;
 	}
 }
 void Animation::Render(sf::RenderWindow &rd,sf::Vector2f position)

@@ -20,9 +20,10 @@ Army_Shotgun::~Army_Shotgun()
 
 void Army_Shotgun::Init()
 {
-	m_movingAnim = new Animation(eID::BLACKARMY_SHOTGUN_MOVE, 20, "blackarmy_shotgun_move", 0.05f);
-	m_attackingAnim = new Animation(eID::BLACKARMY_SHOTGUN_SHOOT,5, "blackarmy_shotgun_shoot", 0.5f);
-	m_movingFeetAnim = new Animation(eID::BLACKARMY_WALK_FEET, 20, "blackarmy_walk_feet", 0.05f);
+	m_movingAnim = new Animation(eID::BLACKARMY_SHOTGUN_MOVE, 20, "blackarmy_shotgun_move", 0.02f);
+	m_attackingAnim = new Animation(eID::BLACKARMY_SHOTGUN_SHOOT,5, "blackarmy_shotgun_shoot", 0.2f);
+	m_movingFeetAnim = new Animation(eID::BLACKARMY_WALK_FEET, 20, "blackarmy_walk_feet", 0.02f);
+	m_Explosion = new Animation(eID::EXPLOSION, 24, "Explosion", 0.04f);
 
 	m_currentAnim = m_movingAnim;
 
@@ -123,6 +124,10 @@ void Army_Shotgun::Update(float deltime)
 			m_distanceMove -= m_speed * deltime;
 		}
 
+		if (m_currentAnim == m_Explosion && m_currentAnim->GetCurrentFrameIndex() == m_currentAnim->GetTotalFrame() - 1)
+		{
+			m_status = RenderGameObject::Status::DEAD;
+		}
 
 	if (m_currentAnim->GetSprite()->getGlobalBounds().top >= SCREEN_HEIGHT || m_currentAnim->GetSprite()->getGlobalBounds().top + m_currentAnim->GetSprite()->getGlobalBounds().height <= 0)
 		m_status = RenderGameObject::Status::DEAD;
@@ -131,12 +136,18 @@ void Army_Shotgun::Update(float deltime)
 
 void Army_Shotgun::Collision(RenderGameObject* collisionObject)
 {
-	if (collisionObject->GetType() == RenderGameObject::Type::BARRIER && m_status == RenderGameObject::Status::ALIVE && m_HP > 0)
+	switch (collisionObject->GetType())
 	{
-		m_HP -= 1;
-		if (m_currentDirection == RenderGameObject::Direction::UP)
-			ChangeDirection();
+	case RenderGameObject::Type::BULLET:
+		if ( m_HP >= 0 && collisionObject->GetStatus()== RenderGameObject::Status::ALIVE)
+		{
+			m_HP -= 1;
+			m_status = RenderGameObject::Status::DESTROYING;
+			m_currentAnim = m_Explosion;
+			m_speed = 0;
+		}
 
 
+		break;
 	}
 }

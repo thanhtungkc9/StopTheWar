@@ -11,37 +11,38 @@ Bullet::Bullet()
 
 Bullet::~Bullet()
 {
-	delete m_currentAnim;
+	
 	delete m_movingAnim;
 }
 
 
 void Bullet::Init()
 {
-	m_movingAnim = new Animation(eID::EXPLOSION, 1, "Explosion", 0.05f);
-	m_Explosion = new Animation(eID::EXPLOSION, 24, "Explosion", 0.05);
+	m_movingAnim = new Animation(eID::EXPLOSION, 1, "Explosion", 0.01f);
+	m_Explosion = new Animation(eID::EXPLOSION, 24, "Explosion", 0.01f);
 
 	m_currentAnim = m_movingAnim;
 
 
 
 	//Scale();
-	m_speed = 150.0f;
+	m_speed = 200.0f;
 	m_currentDirection = UP;
 	m_position = sf::Vector2f(0, 0);
 	m_HP = 1;
 
 	m_movingAnim->GetSprite()->setRotation(-90);
 
-	m_status = ALIVE;
-	m_type = Type::BLACKARMY;
+	m_status = DESTROYING;
+	m_type = Type::BULLET;
+	m_timeToActive = 0.15f;
 }
 
 void Bullet::Scale()
 {
 	//scale
 	float ratioWidth, ratioHeight;
-	ratioWidth = (SCREEN_WIDTH / (2*ARMY_NUM_LANE)) / m_movingAnim->GetSprite()->getLocalBounds().height;
+	ratioWidth = (SCREEN_WIDTH / (3*ARMY_NUM_LANE)) / m_movingAnim->GetSprite()->getLocalBounds().height;
 
 
 	m_movingAnim->GetSprite()->setScale(ratioWidth, ratioWidth);
@@ -65,6 +66,11 @@ void Bullet::Update(float deltime)
 	case DOWN:
 		m_velocityY = m_speed;
 		break;
+	}
+	if (m_status == RenderGameObject::Status::DESTROYING)
+	{
+		m_timeToActive -= deltime;
+		if (m_timeToActive <= 0) m_status = RenderGameObject::Status::ALIVE;
 	}
 		RenderGameObject::Update(deltime);
 		Scale();
@@ -101,13 +107,10 @@ void Bullet::Collision(RenderGameObject* collisionObject)
 	case RenderGameObject::Type::BLACKARMY:
 		if (m_status == RenderGameObject::Status::ALIVE && m_HP >= 0)
 		{
-			m_HP -= 1;
+			m_status= RenderGameObject::Status::DEAD;
 		}
-		if (m_HP <= 0)
-		{
-			m_currentAnim = m_Explosion;
-			m_speed = 0;
-		}
+	
+		
 		break;
 	}
 }

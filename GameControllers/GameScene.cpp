@@ -1,6 +1,5 @@
 #pragma once
 #include "GameScene.h"
-
 GameScene::GameScene()
 {
 	m_bar1 = new Bar(0,275,RenderGameObject::Direction::LEFT);
@@ -20,6 +19,14 @@ void GameScene::Event(sf::Event eventt)
 	{
 		m_bar1->GetSprite()->setPosition(eventt.mouseMove.x - m_bar1->GetSprite()->getGlobalBounds().width / 2, m_bar1->GetSprite()->getPosition().y);
 		m_bar2->GetSprite()->setPosition(SCREEN_WIDTH- eventt.mouseMove.x - m_bar2->GetSprite()->getGlobalBounds().width / 2, m_bar2->GetSprite()->getPosition().y);
+	}
+	if (eventt.type == sf::Event::MouseButtonPressed)
+	{
+		RenderGameObject *newArmy = new Army_Knife();
+		newArmy->Init();
+		newArmy->SetDirection(RenderGameObject::Direction::DOWN);
+		newArmy->SetPosition(eventt.mouseButton.x, eventt.mouseButton.y);
+		m_gameMap->AddArmy(newArmy);
 	}
 
 }
@@ -61,12 +68,14 @@ void GameScene::Init()
 	m_gameMap = new GameMap();
 	GameTime::GetInstance()->StartCounter();
 
+	
+
 }
 
 void GameScene::Render(sf::RenderWindow &rd)
 {	
-	m_bar1->Render(rd);
-	m_bar2->Render(rd);
+	//m_bar1->Render(rd);
+	//m_bar2->Render(rd);
 	
 	m_gameMap->Render(rd);
 	
@@ -85,13 +94,13 @@ void GameScene::CheckCollision()
 	{
 		if ((*it)->GetSpriteAnim()->getGlobalBounds().intersects(m_bar1->GetSprite()->getGlobalBounds()))
 		{
-			(*it)->Collision(m_bar1);
-			m_bar1->Collision((*it));
+		//	(*it)->Collision(m_bar1);
+		//	m_bar1->Collision((*it));
 		}
 		if ((*it)->GetSpriteAnim()->getGlobalBounds().intersects(m_bar2->GetSprite()->getGlobalBounds()))
 		{
-			(*it)->Collision(m_bar2);
-			m_bar2->Collision((*it));
+		//	(*it)->Collision(m_bar2);
+		//	m_bar2->Collision((*it));
 		}
 		for (std::list<RenderGameObject*>::iterator it1 = listArmy.begin(); it1 != listArmy.end(); it1++)
 		{
@@ -107,13 +116,24 @@ void GameScene::CheckCollision()
 	{
 		if ((*bullet)->GetSpriteAnim()->getGlobalBounds().intersects(m_bar1->GetSprite()->getGlobalBounds()))
 		{
-			(*bullet)->Collision(m_bar1);
-			m_bar1->Collision((*bullet));
+		//	(*bullet)->Collision(m_bar1);
+		//	m_bar1->Collision((*bullet));
 		}
 		if ((*bullet)->GetSpriteAnim()->getGlobalBounds().intersects(m_bar2->GetSprite()->getGlobalBounds()))
 		{
-			(*bullet)->Collision(m_bar2);
-			m_bar2->Collision((*bullet));
+		//	(*bullet)->Collision(m_bar2);
+		//	m_bar2->Collision((*bullet));
+		}
+		for (std::list<RenderGameObject*>::iterator army = listArmy.begin(); army != listArmy.end(); army++)
+		{
+			if ((*bullet)->GetSpriteAnim()->getGlobalBounds().intersects((*army)->GetSpriteAnim()->getGlobalBounds()))
+			{
+				if (abs((*bullet)->GetPosition().y - (*army)->GetPosition().y) <= (*army)->GetAnimation()->GetSprite()->getGlobalBounds().height / 2.0)
+				{
+					(*army)->Collision((*bullet));
+					(*bullet)->Collision((*army));
+				}
+			}
 		}
 	}
 }

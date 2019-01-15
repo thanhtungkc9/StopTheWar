@@ -10,6 +10,9 @@ private:
 	bool isPause;
 	int m_currentFrame=0;
 	int m_totalFrame;
+	int m_frameUpdate;
+	int m_currentFrameCount = 0;
+
 	float m_timePerFrame;
 	float m_currentTime;
 

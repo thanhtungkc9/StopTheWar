@@ -30,7 +30,7 @@ public:
 
 	virtual void Init();
 
-
+	virtual void SetDirection(int direction);
 	virtual void Render(sf::RenderWindow &);
 	virtual void Update(float deltime);
 	virtual void Collision(RenderGameObject* collisionObject);
