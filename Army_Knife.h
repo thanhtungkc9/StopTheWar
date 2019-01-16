@@ -10,6 +10,7 @@ protected:
 	Animation *m_attackingAnim;
 
 	Animation *m_Explosion;
+	Animation *m_TeleportAnim;
 
 	int m_HP;
 	int m_framePerRotation;

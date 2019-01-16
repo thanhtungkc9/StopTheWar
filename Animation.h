@@ -3,7 +3,7 @@
 #include "GameControllers/ResourcesManager.h"
 class Animation
 {
-private:
+protected:
 	sf::Texture *m_textureAnim;
 	sf::Sprite *m_spriteAnim;
 	bool isLoop;
@@ -16,6 +16,7 @@ private:
 	float m_timePerFrame;
 	float m_currentTime;
 
+	float m_timeExist;
 	eID m_eID;
 	std::string m_nameAnimation;
 public:
@@ -25,6 +26,8 @@ public:
 	sf::Sprite* GetSprite();
 	int GetCurrentFrameIndex();
 	int GetTotalFrame();
+	void SetTimeExist(float timeExist);
+	float GetTimeExist();
 	void Update(float deltime);
 	void Render(sf::RenderWindow &rd,sf::Vector2f = sf::Vector2f(0,0));
 	std::string GetNameAnimation();

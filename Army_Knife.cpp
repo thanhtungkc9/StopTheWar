@@ -12,19 +12,20 @@ Army_Knife::Army_Knife()
 Army_Knife::~Army_Knife()
 {
 	delete m_attackingAnim;
-	delete m_currentAnim;
 	delete m_movingAnim;
 	delete m_movingFeetAnim;
+	delete m_Explosion;
+	delete m_TeleportAnim;
 }
 
 
 void Army_Knife::Init()
 {
-	m_movingAnim = new Animation(eID::BLACKARMY_KNIFE_MOVE, 20, "blackarmy_knife_move", 0.05f);
+	m_movingAnim = new Animation(eID::BLACKARMY_KNIFE_MOVE, 20, "blackarmy_knife_move", 0.04f);
 	m_attackingAnim = new Animation(eID::BLACKARMY_KNIFE_ATTACK, 15, "blackarmy_knife_attack", 0.04f);
-	m_movingFeetAnim = new Animation(eID::BLACKARMY_WALK_FEET, 20, "blackarmy_walk_feet", 0.05f);
+	m_movingFeetAnim = new Animation(eID::BLACKARMY_WALK_FEET, 20, "blackarmy_walk_feet", 0.04f);
 	m_Explosion = new Animation(eID::EXPLOSION, 24, "Explosion", 0.04f);
-
+	m_TeleportAnim = new Animation(eID::TELEPORT, 3, "Teleport", 0.04f);
 	m_currentAnim = m_movingAnim;
 	
 
@@ -56,6 +57,7 @@ void Army_Knife::Scale()
 	m_movingAnim->GetSprite()->setScale(ratioWidth, ratioWidth);
 	m_attackingAnim->GetSprite()->setScale(ratioWidth, ratioWidth);
 	m_movingFeetAnim->GetSprite()->setScale(ratioWidth, ratioWidth);
+	m_TeleportAnim->GetSprite()->rotate(1);
 }
 
 void Army_Knife::ChangeDirection()
@@ -85,6 +87,10 @@ void Army_Knife::Render(sf::RenderWindow &rd)
 	if (m_currentAnim == m_movingAnim)
 	{
 		m_movingFeetAnim->Render(rd,m_position);
+	}
+	if (m_frameRotation > 3 && m_HP>0)
+	{
+		m_TeleportAnim->Render(rd, m_position - sf::Vector2f(0, m_distanceTeleport));
 	}
 	m_currentAnim->Render(rd,m_position);
 	
@@ -138,6 +144,7 @@ void Army_Knife::Update(float deltime)
 	}
 	else
 	RenderGameObject::Update(deltime);
+	m_TeleportAnim->Update(deltime);
 	if (m_currentAnim == m_movingAnim)
 	{
 		m_movingFeetAnim->Update(deltime);

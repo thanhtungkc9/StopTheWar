@@ -13,6 +13,7 @@ Bullet::~Bullet()
 {
 	
 	delete m_movingAnim;
+	delete m_Explosion;
 }
 
 
@@ -27,7 +28,6 @@ void Bullet::Init()
 
 	//Scale();
 	m_speed = BULLET_SPEED;
-	m_currentDirection = UP;
 	m_position = sf::Vector2f(0, 0);
 	m_HP = 1;
 

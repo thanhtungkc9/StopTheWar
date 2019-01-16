@@ -79,6 +79,10 @@ void ResourcesManager::LoadResource()
 	this->m_listTexture.insert(std::pair<eID, sf::Texture*>(eID::LAZER, texture));
 	this->LoadTextureInfo(eID::LAZER, "Resources//Textures//Lazer//Lazer.txt");
 
+	texture = new sf::Texture();
+	texture->loadFromFile("Resources/Textures/Effects/TeleportPoint.png");
+	this->m_listTexture.insert(std::pair<eID, sf::Texture*>(eID::TELEPORT, texture));
+	this->LoadTextureInfo(eID::TELEPORT, "Resources//Textures//Effects//TeleportPoint.txt");
 }
 
 

@@ -49,6 +49,7 @@ public:
 	RenderGameObject();
 	~RenderGameObject();
 
+
 	virtual sf::Sprite* GetSprite();
 	virtual sf::Sprite* GetSpriteAnim();
 	virtual void Init();

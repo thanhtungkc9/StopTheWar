@@ -16,7 +16,7 @@ public:
 	Bullet();
 	~Bullet();
 
-
+	bool m_isFail = false;
 	virtual void Init();
 
 

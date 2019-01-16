@@ -12,9 +12,9 @@ Army_Shotgun::Army_Shotgun()
 Army_Shotgun::~Army_Shotgun()
 {
 	delete m_attackingAnim;
-	delete m_currentAnim;
 	delete m_movingAnim;
 	delete m_movingFeetAnim;
+	delete m_Explosion;
 }
 
 

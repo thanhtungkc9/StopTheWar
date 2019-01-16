@@ -7,8 +7,6 @@ protected:
 	sf::Sprite *m_spriteBackGround;
 	sf::Texture *m_textureBackGround;
 
-	sf::Font *m_textFont;
-	sf::Text *m_score;
 public:
 	virtual void Update(float deltime);
 	virtual void Init();

@@ -20,6 +20,15 @@ void GameMap::AddArmyBullet(Bullet * armyBullet)
 {
 	m_listArmyBullet.push_back(armyBullet);
 }
+void GameMap::AddEffect(Animation* effect)
+{
+	m_listEffect.push_back(effect);
+}
+void GameMap::SetDif(float dif)
+{
+	m_difficult = dif;
+}
+
 
 void GameMap::Init()
 {
@@ -41,10 +50,42 @@ void GameMap::Render(sf::RenderWindow &rd)
 				(*it)->Render(rd);
 			}
 	#pragma endregion
+
+			/*
+	#pragma region Render Effect
+			for (std::list<Animation*>::iterator it = m_listEffect.begin(); it != m_listEffect.end(); it++)
+			{
+				(*it)->Render(rd,(*it)->GetSprite()->getPosition());
+			}
+	#pragma endregion
+	*/
 }
 
 void GameMap::Update(float deltime)
 {
+	/*
+	#pragma region Update Effect
+		for (std::list<Animation*>::iterator it = m_listEffect.begin(); it != m_listEffect.end(); )
+		{
+			if ((*it)->GetTimeExist() > 0)
+			{
+				(*it)->Update(deltime);
+			}
+			else
+			{
+				Animation* tmp = *it;
+				it++;
+				m_listEffect.remove(tmp);
+				delete tmp;
+				tmp = NULL;
+				continue;
+			}
+			it++;
+			//(*it)->GetSprite()->scale(-0.11, -0.11);
+			
+		}
+	#pragma endregion
+	*/
 
 	#pragma region Update Army
 		for (std::list<RenderGameObject*>::iterator it = m_listArmy.begin(); it != m_listArmy.end(); )
@@ -57,6 +98,7 @@ void GameMap::Update(float deltime)
 				it++;
 				m_listArmy.remove(tmp);
 				delete tmp;
+				tmp = NULL;
 				continue;
 			}
 
@@ -66,13 +108,21 @@ void GameMap::Update(float deltime)
 			{
 				Bullet *bullet = new Bullet();
 				bullet->Init();
-				if ((*it)->GetDirection()==RenderGameObject::Direction::UP)
-				bullet->SetPosition((*it)->GetAnimation()->GetSprite()->getGlobalBounds().left + (*it)->GetAnimation()->GetSprite()->getGlobalBounds().width *0.75,
-					(*it)->GetAnimation()->GetSprite()->getGlobalBounds().top);
+				if ((*it)->GetDirection() == RenderGameObject::Direction::UP)
+				{
+					
+					bullet->SetPosition((*it)->GetAnimation()->GetSprite()->getGlobalBounds().left + (*it)->GetAnimation()->GetSprite()->getGlobalBounds().width *0.75,
+						(*it)->GetAnimation()->GetSprite()->getGlobalBounds().top);
+					bullet->SetDirection((*it)->GetDirection());
+				}
 				else
+				{
+					
 					bullet->SetPosition((*it)->GetAnimation()->GetSprite()->getGlobalBounds().left + (*it)->GetAnimation()->GetSprite()->getGlobalBounds().width *0.25,
-					(*it)->GetAnimation()->GetSprite()->getGlobalBounds().top + (*it)->GetAnimation()->GetSprite()->getGlobalBounds().height);
-				bullet->SetDirection((*it)->GetDirection());
+						(*it)->GetAnimation()->GetSprite()->getGlobalBounds().top + (*it)->GetAnimation()->GetSprite()->getGlobalBounds().height);
+					bullet->SetDirection((*it)->GetDirection());
+				}
+				bullet->SetSpeed(BULLET_SPEED*m_difficult);
 				m_listArmyBullet.push_back(bullet);
 				(*it)->SetStatus(RenderGameObject::Status::DESTROYING);
 			}
@@ -92,6 +142,7 @@ void GameMap::Update(float deltime)
 				it++;
 				m_listArmyBullet.remove(tmp);
 				delete tmp;
+				tmp = NULL;
 				continue;
 			}
 			it++;

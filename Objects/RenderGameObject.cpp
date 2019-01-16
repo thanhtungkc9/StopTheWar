@@ -88,12 +88,14 @@ void RenderGameObject::SetPosition(int posX, int posY)
 {
 	m_position.x = posX;
 	m_position.y = posY;
+	m_currentAnim->GetSprite()->setPosition(posX, posY);
 }
 
  
  void RenderGameObject::SetPosition(sf::Vector2f position)
  {
 	 m_position = position;
+	 m_currentAnim->GetSprite()->setPosition(position);
  }
  sf::Vector2f RenderGameObject::GetPosition()
  {

@@ -44,8 +44,19 @@ int Animation::GetTotalFrame()
 {
 	return m_totalFrame;
 }
+float Animation::GetTimeExist()
+{
+	return m_timeExist;
+}
+void  Animation::SetTimeExist(float timeExist)
+{
+	 m_timeExist=timeExist;
+}
 void Animation::Update(float deltime)
 {
+	m_timeExist -= deltime;
+	if (m_timeExist < -5.0f)
+		m_timeExist = 5.0f;
 	if (m_totalFrame == 1) return;
 	if (m_currentFrameCount >= m_frameUpdate)
 	{
