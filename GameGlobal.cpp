@@ -42,11 +42,11 @@ void GameGlobal::SetHealth(int health)
  }
 
 
-void GameGlobal::SetSound(bool isSound) {
-	if (isSound) m_isSound = false;
-	else m_isSound = true;
+void GameGlobal::SetSoundEffect(bool isSound) {
+	
+	 m_isSoundEffect = isSound;
 }
 
-bool GameGlobal::GetSound() {
-	return m_isSound;
+bool GameGlobal::GetSoundEffect() {
+	return m_isSoundEffect;
 }

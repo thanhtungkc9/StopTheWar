@@ -103,7 +103,7 @@ void Bullet::Collision(RenderGameObject* collisionObject)
 				m_currentAnim = m_Explosion;
 				m_speed = 0;
 				m_status = RenderGameObject::Status::DESTROYING;
-				
+				SoundManager::getInstance()->PlaySound(eIDSound::EXPLOSION_SOUND);
 			}
 		}
 		break;
@@ -111,6 +111,7 @@ void Bullet::Collision(RenderGameObject* collisionObject)
 		if (m_status == RenderGameObject::Status::ALIVE && m_HP >= 0)
 		{
 			m_status= RenderGameObject::Status::DEAD;
+			SoundManager::getInstance()->PlaySound(eIDSound::EXPLOSION_SOUND);
 		}
 	
 		

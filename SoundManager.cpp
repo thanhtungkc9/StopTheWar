@@ -16,15 +16,28 @@ SoundManager* SoundManager::getInstance()
 		_instance = new SoundManager();
 	return _instance;
 }
-
+void SoundManager::LoadSoundResources()
+{
+	m_explosionSoundBuffer.loadFromFile("Resources/Sounds/explosion.wav");
+	m_explosionSound.setBuffer(m_explosionSoundBuffer);
+}
 void SoundManager::release()
 {
 	delete _instance;			// _instance is static attribute, only static function can delete it.
 	_instance = nullptr;
 }
-void SoundManager::PlaySound()
+void SoundManager::PlaySound(int eIDSound)
 {
-	m_soundBuffer.loadFromFile("Resources/Sounds/explosion.wav");
-	m_sound.setBuffer(m_soundBuffer);
-	m_sound.play();
+	switch (eIDSound)
+	{
+	case eIDSound::EXPLOSION_SOUND:
+		m_explosionSound.play();
+		break;
+	case eIDSound::MENU_SOUND:
+		m_menuSound.play();
+		break;
+	case eIDSound::GAME_PLAYING_SOUND:
+		m_gamePlayingSound.play();
+		break;
+	}
 }

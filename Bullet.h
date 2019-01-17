@@ -2,6 +2,7 @@
 #include "Objects/RenderGameObject.h"
 #include "Animation.h"
 #include "Objects/RenderGameObject.h"
+#include "SoundManager.h"
 class Bullet :public RenderGameObject
 {
 protected:

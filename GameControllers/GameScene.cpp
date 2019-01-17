@@ -42,20 +42,60 @@ void GameScene::Event(sf::Event eventt, sf::RenderWindow &rd)
 			m_bar2->SetMovingRight(false);
 			m_bar2->SetMovingLeft(false);
 		}
+		if ( eventt.type==sf::Event::KeyPressed && eventt.key.code ==sf::Keyboard::P)
+		{
+			if (m_gameStatus == PLAYING) {
+				m_gameStatus = PAUSE;
+				m_timeLeft = m_currentTimeLeft;
+			}
+			else if (m_gameStatus == PAUSE) 
+				{
+			
+					m_gameStatus = PLAYING;
+					GameTime::GetInstance()->StartCounter();
+				}
+		}
+		if (m_gameStatus == GAMEOVER)
+		{
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) || sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
+			{
+				m_isPlayAgainSelected = !m_isPlayAgainSelected;
+			}
+			if (eventt.type==sf::Event::KeyReleased && eventt.key.code==sf::Keyboard::Enter)
+			{
+				if (m_isPlayAgainSelected)
+				{					
+					ResetGameParameter();
+					ResetGameScene();
+					return;
+				}
+				else
+				{
+					Scene *menuscene = new MenuScene(SCREEN_WIDTH, SCREEN_HEIGHT);
+					SceneManager::GetInstance()->ReplaceScene(menuscene);
+					ResetGameParameter();
+					return;
+				}
+			}
+		}
+
 		
-	if (eventt.type == sf::Event::MouseButtonPressed)
+	/*if (eventt.type == sf::Event::MouseButtonPressed)
 	{
 		RenderGameObject *newArmy = new Army_Shotgun();
 		newArmy->Init();
 		newArmy->SetDirection(RenderGameObject::Direction::DOWN);
 		newArmy->SetPosition(eventt.mouseButton.x, eventt.mouseButton.y);
 		m_gameMap->AddArmy(newArmy);
-		SoundManager::getInstance()->PlaySound();
-	}
+		SoundManager::getInstance()->PlaySound(eIDSound::EXPLOSION_SOUND);
+	}*/
 
 }
 void GameScene::Update(float deltime)
 {	
+	if (GameGlobal::getInstance()->GetHealth() <= 0) m_gameStatus = GAMEOVER;
+	if (m_gameStatus == PAUSE || m_gameStatus==GAMEOVER) return;
+	
 	m_bar1->Update(deltime);
 	m_bar2->Update(deltime);
 
@@ -73,7 +113,7 @@ void GameScene::Update(float deltime)
 	{
 		RenderGameObject *newArmy;
 		int randType = rand() % 11;
-		if (randType >= 2)
+		if (randType >= 1)
 			newArmy = new Army_Shotgun();
 		else
 			newArmy = new Army_Knife();;
@@ -116,7 +156,9 @@ void GameScene::Update(float deltime)
 	CheckCollision();
 	
 	int timeTmp = m_currentTimeLeft;
+	
 	m_currentTimeLeft = m_timeLeft - (GameTime::GetInstance()->GetTimeInSecond() - GameTime::GetInstance()->GetStartTime());
+	//GameTime::GetInstance()->StartCounter();
 	if (m_currentTimeLeft % 15 == 0 && m_currentTimeLeft != timeTmp)
 	{
 		m_difficult = m_difficult + 0.12f;
@@ -176,6 +218,59 @@ void GameScene::Render(sf::RenderWindow &rd)
 	rd.draw(*m_scoreText);
 	rd.draw(*m_healthText);
 	rd.draw(*m_currentTimeLeftText);
+	if (m_gameStatus == PAUSE)
+	{
+		sf::RectangleShape rect;
+		rect.setSize(sf::Vector2f(SCREEN_WIDTH, SCREEN_HEIGHT));
+		rect.setPosition(0, 0);
+		rect.setFillColor(sf::Color(0, 0, 0, 100));
+		rd.draw(rect);
+		sf::Text pause;
+		sf::Font font;
+		font.loadFromFile("font.ttf");
+		pause.setFont(font);
+		pause.setScale(1.5, 1.5);
+		pause.setPosition(SCREEN_WIDTH / 3, SCREEN_HEIGHT / 2);
+		pause.setString("Paused");
+		rd.draw(pause);
+	}
+	if (m_gameStatus == GAMEOVER)
+	{
+		sf::RectangleShape rect;
+		rect.setSize(sf::Vector2f(SCREEN_WIDTH, SCREEN_HEIGHT));
+		rect.setPosition(0, 0);
+		rect.setFillColor(sf::Color(0, 0, 0, 100));
+		rd.draw(rect);
+		sf::Text gameover;
+		sf::Font font;
+		font.loadFromFile("font.ttf");
+		gameover.setFont(font);
+		gameover.setScale(1.5, 1.5);
+		gameover.setPosition(SCREEN_WIDTH / 4, SCREEN_HEIGHT / 3);
+		gameover.setString("Game Over");
+		sf::Text playAgain;
+		playAgain.setFont(font);
+		playAgain.setScale(0.8, 0.8);
+		playAgain.setPosition(SCREEN_WIDTH/5,gameover.getGlobalBounds().top + gameover.getGlobalBounds().height + 20 );
+		playAgain.setString("PlayAgain");
+
+		sf::Text exit;
+		exit.setFont(font);
+		exit.setScale(0.8, 0.8);
+		exit.setPosition(playAgain.getGlobalBounds().left+playAgain.getGlobalBounds().width+80, gameover.getGlobalBounds().top + gameover.getGlobalBounds().height + 20);
+		exit.setString("Exit");
+		if (m_isPlayAgainSelected)
+		{
+			playAgain.setFillColor(sf::Color::Green);
+		}
+		else
+		{
+			exit.setFillColor(sf::Color::Green);
+		}
+		rd.draw(gameover);
+		rd.draw(playAgain);
+		rd.draw(exit);
+	}
 	
 }
 
@@ -264,3 +359,15 @@ void GameScene::CheckCollision()
 	}
 }
 
+void GameScene::ResetGameScene()
+{
+	Scene *gameScene = new GameScene();
+	gameScene->Init();
+	SceneManager::GetInstance()->ReplaceScene(gameScene);	
+}
+void GameScene::ResetGameParameter()
+{
+	GameGlobal::getInstance()->SetHealth(3);
+	GameGlobal::getInstance()->SetScore(0);
+	GameTime::GetInstance()->StartCounter();
+}

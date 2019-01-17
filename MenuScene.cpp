@@ -16,7 +16,7 @@ MenuScene::MenuScene(float w, float h)
 	menu[1].setFont(font);
 	menu[1].setFillColor(sf::Color::White);
 	menu[1].setString("Sound");
-	sound.setPosition(sf::Vector2f(20, h / (MaxItem + 1) *1.25f));
+	sound.setPosition(sf::Vector2f(w/2, h / (MaxItem + 1) *1.25f));
 	menu[1].setPosition(sf::Vector2f(15, h / (MaxItem + 1) * 1.25f));
 
 	menu[2].setFont(font);
@@ -31,6 +31,7 @@ MenuScene::MenuScene(float w, float h)
 	GameName.setPosition(sf::Vector2f(60, 40));
 
 	selectItemIndex = 0;
+	sound.setFont(font);
 }
 
 
@@ -52,9 +53,7 @@ void MenuScene::Render(sf::RenderWindow &window) {
 	for (int i = 0; i < MaxItem; i++)
 		window.draw(menu[i]);
 
-	if (GameGlobal::getInstance()->GetSound())
-		sound.setString("v");
-	else sound.setString("x");
+
 	window.draw(sound);
 }
 
@@ -73,7 +72,9 @@ void MenuScene::MoveDown() {
 }
 
 void MenuScene::Update(float deltime) {
-	
+	if (GameGlobal::getInstance()->GetSoundEffect())
+		sound.setString("v");
+	else sound.setString("x");
 }
 void MenuScene::Event(sf::Event event, sf::RenderWindow &rd)
 {
@@ -89,17 +90,18 @@ void MenuScene::Event(sf::Event event, sf::RenderWindow &rd)
 		case sf::Keyboard::Down:
 			MoveDown();
 			break;
-		case sf::Keyboard::Return:
+		
+		case sf::Keyboard::Enter:
 			switch (selectItemIndex) {
 			case 0:
-				//Play
-			
+				//Play			
 				gameScene = new GameScene();
 				gameScene->Init();
 				SceneManager::GetInstance()->ReplaceScene(gameScene);
 				break;
 			case 1:
 				//Setting;
+				GameGlobal::getInstance()->SetSoundEffect(!GameGlobal::getInstance()->GetSoundEffect());
 				break;
 			case 2:
 				//Quit;

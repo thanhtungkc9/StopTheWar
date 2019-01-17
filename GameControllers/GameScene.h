@@ -11,6 +11,8 @@
 #include "../GameGlobal.h"
 #include "../SoundManager.h"
 #include <list>
+#include "../MenuScene.h"
+#include "SceneManager.h"
 class GameScene :public Scene
 {
 private:
@@ -41,6 +43,15 @@ private:
 	bool m_isAddArmy = true; // add 1 enemy if bullet get through 2 walls
 	float m_lasPosX;
 
+	enum GameSceneStatus
+	{
+		PLAYING,
+		GAMEOVER,
+		PAUSE
+	};
+	int m_gameStatus = PLAYING;
+	bool m_isPlayAgainSelected = true;
+
 public:
 	GameScene();
 	~GameScene();
@@ -50,4 +61,6 @@ public:
 	virtual void Render(sf::RenderWindow&);
 
 	void CheckCollision();
+	void ResetGameScene();
+	void ResetGameParameter();
 };
