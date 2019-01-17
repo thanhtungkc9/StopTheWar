@@ -9,6 +9,8 @@ public:
 	 void SetScore(int Score);
 	 int GetHealth();
 	 void SetHealth(int health);
+	 bool GetSound();
+	 void SetSound(bool);
 
 	GameGlobal(void);
 	~GameGlobal(void);
@@ -17,4 +19,5 @@ private:
 
 	int m_score=0;
 	int m_health = 3;
+	bool m_isSound = true;
 };

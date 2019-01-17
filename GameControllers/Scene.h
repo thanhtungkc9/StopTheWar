@@ -12,7 +12,7 @@ public:
 	virtual void Init();
 	virtual void Render(sf::RenderWindow&);
 
-	virtual void Event(sf::Event event);
+	virtual void Event(sf::Event event, sf::RenderWindow &);
 
 	~Scene();
 

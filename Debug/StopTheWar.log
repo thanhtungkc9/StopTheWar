@@ -1,26 +1,3 @@
-﻿  GameScene.cpp
-e:\hoctap\gameloft-leap\gameloft\stopthewar\gamecontrollers\gamescene.cpp(87): warning C4244: '=': conversion from 'T' to 'int', possible loss of data
-          with
-          [
-              T=float
-          ]
-e:\hoctap\gameloft-leap\gameloft\stopthewar\gamecontrollers\gamescene.cpp(92): warning C4244: '=': conversion from 'T' to 'int', possible loss of data
-          with
-          [
-              T=float
-          ]
-e:\hoctap\gameloft-leap\gameloft\stopthewar\gamecontrollers\gamescene.cpp(96): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-e:\hoctap\gameloft-leap\gameloft\stopthewar\gamecontrollers\gamescene.cpp(109): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-e:\hoctap\gameloft-leap\gameloft\stopthewar\gamecontrollers\gamescene.cpp(110): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-e:\hoctap\gameloft-leap\gameloft\stopthewar\gamecontrollers\gamescene.cpp(119): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-e:\hoctap\gameloft-leap\gameloft\stopthewar\gamecontrollers\gamescene.cpp(222): warning C4244: 'argument': conversion from 'T' to 'int', possible loss of data
-          with
-          [
-              T=float
-          ]
-e:\hoctap\gameloft-leap\gameloft\stopthewar\gamecontrollers\gamescene.cpp(235): warning C4244: 'argument': conversion from 'T' to 'int', possible loss of data
-          with
-          [
-              T=float
-          ]
+﻿  StopTheWar.cpp
+e:\hoctap\gameloft-leap\gameloft\stopthewar\stopthewar.cpp(44): warning C4305: 'argument': truncation from 'double' to 'float'
   StopTheWar.vcxproj -> E:\HocTap\Gameloft-LEAP\GameLoft\StopTheWar\Debug\StopTheWar.exe

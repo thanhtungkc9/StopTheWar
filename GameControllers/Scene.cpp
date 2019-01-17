@@ -26,7 +26,7 @@ void Scene::Render(sf::RenderWindow &rd)
 
 }
 
-void Scene::Event(sf::Event event)
+void Scene::Event(sf::Event event, sf::RenderWindow &rd)
 {
 
 }

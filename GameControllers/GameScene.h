@@ -45,7 +45,7 @@ public:
 	GameScene();
 	~GameScene();
 	virtual void Update(float deltime);
-	virtual void Event(sf::Event event);
+	virtual void Event(sf::Event event, sf::RenderWindow &);
 	virtual void Init();
 	virtual void Render(sf::RenderWindow&);
 

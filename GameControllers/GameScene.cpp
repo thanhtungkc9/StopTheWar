@@ -13,7 +13,7 @@ GameScene::~GameScene()
 {
 
 }
-void GameScene::Event(sf::Event eventt)
+void GameScene::Event(sf::Event eventt, sf::RenderWindow &rd)
 {
 
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))

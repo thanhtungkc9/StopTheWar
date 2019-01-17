@@ -40,3 +40,13 @@ void GameGlobal::SetHealth(int health)
 {
 	m_health = health;
  }
+
+
+void GameGlobal::SetSound(bool isSound) {
+	if (isSound) m_isSound = false;
+	else m_isSound = true;
+}
+
+bool GameGlobal::GetSound() {
+	return m_isSound;
+}
