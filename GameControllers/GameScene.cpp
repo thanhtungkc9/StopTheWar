@@ -50,6 +50,7 @@ void GameScene::Event(sf::Event eventt)
 		newArmy->SetDirection(RenderGameObject::Direction::DOWN);
 		newArmy->SetPosition(eventt.mouseButton.x, eventt.mouseButton.y);
 		m_gameMap->AddArmy(newArmy);
+		SoundManager::getInstance()->PlaySound();
 	}
 
 }
@@ -70,19 +71,30 @@ void GameScene::Update(float deltime)
 
 	if (m_currentTime >= m_timeAddBlackArmy)
 	{
-		RenderGameObject *newArmy=new Army_Knife();		
+		RenderGameObject *newArmy;
+		int randType = rand() % 11;
+		if (randType >= 2)
+			newArmy = new Army_Shotgun();
+		else
+			newArmy = new Army_Knife();;
 		newArmy->Init();
 		srand((int)newArmy);
 		int TopOrBottom = rand() % 2;
 		int posX;
+		if (randType!=0)
 		do
 		{
 			posX=newArmy->GetSpriteAnim()->getGlobalBounds().width / 2 + newArmy->GetSpriteAnim()->getGlobalBounds().width*(rand() % ARMY_NUM_LANE);
 		} while (abs(posX - m_lasPosX) < newArmy->GetSpriteAnim()->getGlobalBounds().width*2);
-
+		else
+		{
+			int lane = rand() % (ARMY_NUM_LANE * 1 / 3) + (ARMY_NUM_LANE / 3);
+			posX = newArmy->GetSpriteAnim()->getGlobalBounds().width / 2 + newArmy->GetSpriteAnim()->getGlobalBounds().width*lane;
+		}
 		newArmy->SetPosition(posX, 
 			TopOrBottom*(SCREEN_HEIGHT+100)-50);
 		m_lasPosX = posX;
+		
 		if (TopOrBottom == 0)//Top
 		{			
 			newArmy->SetDirection(RenderGameObject::Direction::DOWN);
@@ -95,7 +107,7 @@ void GameScene::Update(float deltime)
 		m_gameMap->AddArmy(newArmy);
 		m_currentTime = 0;
 		srand(time(0));
-		m_timeAddBlackArmy = 0.6 + (rand()%50 / 50.0);
+		m_timeAddBlackArmy = 0.8 + (rand()%50 / 50.0);
 	}
 	else
 	{
@@ -150,11 +162,11 @@ void GameScene::Render(sf::RenderWindow &rd)
 {	
 	rd.draw(*m_spriteBackGround);
 	
-	
-	m_gameMap->Render(rd);
-
 	m_bar1->Render(rd);
 	m_bar2->Render(rd);
+	m_gameMap->Render(rd);
+
+	
 	//float timee = GameTime::GetInstance()->GetTimeInSecond() - GameTime::GetInstance()->GetStartTime();
 	//m_score->setString("time: "+ std::to_string(timee));
 
@@ -209,7 +221,7 @@ void GameScene::CheckCollision()
 				newArmy->Init();	
 				newArmy->SetPosition((*bullet)->GetPosition().x, -20);
 				newArmy->SetDirection(RenderGameObject::Direction::DOWN);
-				newArmy->SetSpeed(ARMY_KNIFE_SPEED*m_difficult);
+				//newArmy->SetSpeed(ARMY_KNIFE_SPEED*m_difficult);
 				m_gameMap->AddArmy(newArmy);
 				(*bullet)->m_isFail = true;
 
@@ -222,7 +234,7 @@ void GameScene::CheckCollision()
 				newArmy->Init();
 				newArmy->SetPosition((*bullet)->GetPosition().x, SCREEN_HEIGHT+20);
 				newArmy->SetDirection(RenderGameObject::Direction::UP);
-				newArmy->SetSpeed(ARMY_KNIFE_SPEED*m_difficult);
+				//newArmy->SetSpeed(ARMY_KNIFE_SPEED*m_difficult);
 				m_gameMap->AddArmy(newArmy);
 				(*bullet)->m_isFail = true;
 				m_lasPosX = newArmy->GetPosition().x;
@@ -240,7 +252,7 @@ void GameScene::CheckCollision()
 		}
 		for (std::list<RenderGameObject*>::iterator army = listArmy.begin(); army != listArmy.end(); army++)
 		{
-			if (collisionBullet.intersects((*army)->GetSpriteAnim()->getGlobalBounds()))
+			if (collisionBullet.intersects((*army)->GetSpriteAnim()->getGlobalBounds()) && (*bullet)->GetDirection()!=(*army)->GetDirection())
 			{
 				if (abs((*bullet)->GetPosition().y - (*army)->GetPosition().y) <= (*army)->GetAnimation()->GetSprite()->getGlobalBounds().height / 2.0)
 				{

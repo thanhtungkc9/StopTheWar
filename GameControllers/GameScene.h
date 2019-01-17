@@ -9,6 +9,7 @@
 #include "../GameTime.h"
 #include "../GameMap.h"
 #include "../GameGlobal.h"
+#include "../SoundManager.h"
 #include <list>
 class GameScene :public Scene
 {

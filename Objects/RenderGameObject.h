@@ -44,7 +44,7 @@ public:
 		REDARMY,
 		BARRIER,
 		LAZER,
-		BULLET
+		BULLET,
 	};
 	RenderGameObject();
 	~RenderGameObject();

@@ -16,7 +16,7 @@ Bar::Bar(int posX, int posY,int direction)
 	Init();
 	m_sprite->setPosition(sf::Vector2f(posX, posY));
 	m_currentDirection = direction;
-	m_sprite->setScale((float)((SCREEN_WIDTH/5)/m_sprite->getLocalBounds().width), 0.75);
+	m_sprite->setScale((float)((SCREEN_WIDTH/ 4)/m_sprite->getLocalBounds().width), 0.75);
 	m_type = RenderGameObject::Type::BARRIER;
 
 }

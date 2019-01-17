@@ -34,6 +34,9 @@ void Army_Knife::Init()
 	m_speed = ARMY_KNIFE_SPEED;
 	m_currentDirection = UP;
 	m_HP = 2;
+	if (rand() % 4 == 0)
+		m_HP = 1;
+
 	m_position = sf::Vector2f(0, 0);
 	m_framePerRotation = 2;
 	m_distanceTeleport = ARMY_KNIFE_TELEPORT_DISTANCE;
@@ -151,7 +154,7 @@ void Army_Knife::Update(float deltime)
 		}
 	if (m_HP>0) Scale();
 
-	if (m_currentAnim == m_Explosion && m_currentAnim->GetCurrentFrameIndex()==m_currentAnim->GetTotalFrame()-1)
+	if ((m_currentAnim == m_Explosion || m_currentAnim==m_attackingAnim) && m_currentAnim->GetCurrentFrameIndex()==m_currentAnim->GetTotalFrame()-1)
 	{
 		m_status = RenderGameObject::Status::DEAD;
 
