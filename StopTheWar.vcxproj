@@ -161,43 +161,41 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="Animation.h" />
-    <ClInclude Include="Army_Knife.h" />
-    <ClInclude Include="Army_Shotgun.h" />
-    <ClInclude Include="Bullet.h" />
+    <ClInclude Include="GameControllers\Animation.h" />
     <ClInclude Include="GameControllers\define.h" />
-    <ClInclude Include="GameControllers\GameScene.h" />
+    <ClInclude Include="GameControllers\GameGlobal.h" />
+    <ClInclude Include="GameControllers\GameMap.h" />
+    <ClInclude Include="GameControllers\GameTime.h" />
     <ClInclude Include="GameControllers\Point.h" />
     <ClInclude Include="GameControllers\ResourcesManager.h" />
-    <ClInclude Include="GameControllers\Scene.h" />
     <ClInclude Include="GameControllers\SceneManager.h" />
-    <ClInclude Include="GameGlobal.h" />
-    <ClInclude Include="GameMap.h" />
-    <ClInclude Include="GameTime.h" />
-    <ClInclude Include="Lazer.h" />
-    <ClInclude Include="MenuScene.h" />
-    <ClInclude Include="Objects\Bar.h" />
+    <ClInclude Include="GameControllers\SoundManager.h" />
+    <ClInclude Include="Objects\Enemies\Army_Knife.h" />
+    <ClInclude Include="Objects\Enemies\Army_Shotgun.h" />
+    <ClInclude Include="Objects\Enemies\Bullet.h" />
+    <ClInclude Include="Objects\Enemies\Lazer.h" />
     <ClInclude Include="Objects\GameObject.h" />
+    <ClInclude Include="Objects\Player_Bar\Bar.h" />
     <ClInclude Include="Objects\RenderGameObject.h" />
     <ClInclude Include="pch.h" />
-    <ClInclude Include="SoundManager.h" />
+    <ClInclude Include="Scenes\GameScene.h" />
+    <ClInclude Include="Scenes\MenuScene.h" />
+    <ClInclude Include="Scenes\Scene.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Animation.cpp" />
-    <ClCompile Include="Army_Knife.cpp" />
-    <ClCompile Include="Army_Shotgun.cpp" />
-    <ClCompile Include="Bullet.cpp" />
-    <ClCompile Include="GameControllers\GameScene.cpp" />
+    <ClCompile Include="GameControllers\Animation.cpp" />
+    <ClCompile Include="GameControllers\GameGlobal.cpp" />
+    <ClCompile Include="GameControllers\GameMap.cpp" />
+    <ClCompile Include="GameControllers\GameTime.cpp" />
     <ClCompile Include="GameControllers\Point.cpp" />
     <ClCompile Include="GameControllers\ResourcesManager.cpp" />
-    <ClCompile Include="GameControllers\Scene.cpp" />
     <ClCompile Include="GameControllers\SceneManager.cpp" />
-    <ClCompile Include="GameGlobal.cpp" />
-    <ClCompile Include="GameMap.cpp" />
-    <ClCompile Include="GameTime.cpp" />
-    <ClCompile Include="Lazer.cpp" />
-    <ClCompile Include="MenuScene.cpp" />
-    <ClCompile Include="Objects\Bar.cpp" />
+    <ClCompile Include="GameControllers\SoundManager.cpp" />
+    <ClCompile Include="Objects\Enemies\Army_Knife.cpp" />
+    <ClCompile Include="Objects\Enemies\Army_Shotgun.cpp" />
+    <ClCompile Include="Objects\Enemies\Bullet.cpp" />
+    <ClCompile Include="Objects\Enemies\Lazer.cpp" />
+    <ClCompile Include="Objects\Player_Bar\Bar.cpp" />
     <ClCompile Include="Objects\RenderGameObject.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
@@ -205,7 +203,9 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="SoundManager.cpp" />
+    <ClCompile Include="Scenes\GameScene.cpp" />
+    <ClCompile Include="Scenes\MenuScene.cpp" />
+    <ClCompile Include="Scenes\Scene.cpp" />
     <ClCompile Include="StopTheWar.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

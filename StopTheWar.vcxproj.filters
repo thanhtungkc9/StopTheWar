@@ -19,13 +19,19 @@
     <Filter Include="GameControllers">
       <UniqueIdentifier>{d6b2a282-74e2-40d2-863f-cd1ac4433d0d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Objects\Player_Bar">
+      <UniqueIdentifier>{b7d59eb3-0915-49fe-a19e-dbd97db4454b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Objects\Enemies">
+      <UniqueIdentifier>{8f056b77-683d-490c-ab3b-262837d4f545}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scenes">
+      <UniqueIdentifier>{d3dc7036-01e8-4540-9aea-2252017d35be}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">
       <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Objects\Bar.h">
-      <Filter>Objects</Filter>
     </ClInclude>
     <ClInclude Include="Objects\GameObject.h">
       <Filter>Objects</Filter>
@@ -33,112 +39,115 @@
     <ClInclude Include="Objects\RenderGameObject.h">
       <Filter>Objects</Filter>
     </ClInclude>
-    <ClInclude Include="GameControllers\SceneManager.h">
-      <Filter>GameControllers</Filter>
+    <ClInclude Include="Objects\Player_Bar\Bar.h">
+      <Filter>Objects\Player_Bar</Filter>
     </ClInclude>
-    <ClInclude Include="GameControllers\GameScene.h">
-      <Filter>GameControllers</Filter>
+    <ClInclude Include="Scenes\GameScene.h">
+      <Filter>Scenes</Filter>
     </ClInclude>
-    <ClInclude Include="GameControllers\Scene.h">
-      <Filter>GameControllers</Filter>
+    <ClInclude Include="Scenes\MenuScene.h">
+      <Filter>Scenes</Filter>
     </ClInclude>
-    <ClInclude Include="GameControllers\ResourcesManager.h">
+    <ClInclude Include="Scenes\Scene.h">
+      <Filter>Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="Objects\Enemies\Army_Knife.h">
+      <Filter>Objects\Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="Objects\Enemies\Army_Shotgun.h">
+      <Filter>Objects\Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="Objects\Enemies\Bullet.h">
+      <Filter>Objects\Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="Objects\Enemies\Lazer.h">
+      <Filter>Objects\Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="GameControllers\Animation.h">
       <Filter>GameControllers</Filter>
     </ClInclude>
     <ClInclude Include="GameControllers\define.h">
       <Filter>GameControllers</Filter>
     </ClInclude>
+    <ClInclude Include="GameControllers\GameGlobal.h">
+      <Filter>GameControllers</Filter>
+    </ClInclude>
+    <ClInclude Include="GameControllers\GameMap.h">
+      <Filter>GameControllers</Filter>
+    </ClInclude>
+    <ClInclude Include="GameControllers\GameTime.h">
+      <Filter>GameControllers</Filter>
+    </ClInclude>
     <ClInclude Include="GameControllers\Point.h">
       <Filter>GameControllers</Filter>
     </ClInclude>
-    <ClInclude Include="Animation.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="GameControllers\ResourcesManager.h">
+      <Filter>GameControllers</Filter>
     </ClInclude>
-    <ClInclude Include="Army_Knife.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="GameControllers\SceneManager.h">
+      <Filter>GameControllers</Filter>
     </ClInclude>
-    <ClInclude Include="Army_Shotgun.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="GameGlobal.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Lazer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="GameTime.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Bullet.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="GameMap.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="SoundManager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="MenuScene.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="GameControllers\SoundManager.h">
+      <Filter>GameControllers</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="StopTheWar.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Objects\Bar.cpp">
-      <Filter>Objects</Filter>
-    </ClCompile>
     <ClCompile Include="Objects\RenderGameObject.cpp">
       <Filter>Objects</Filter>
     </ClCompile>
-    <ClCompile Include="GameControllers\SceneManager.cpp">
+    <ClCompile Include="Objects\Player_Bar\Bar.cpp">
+      <Filter>Objects\Player_Bar</Filter>
+    </ClCompile>
+    <ClCompile Include="Scenes\GameScene.cpp">
+      <Filter>Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="Scenes\MenuScene.cpp">
+      <Filter>Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="Scenes\Scene.cpp">
+      <Filter>Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="Objects\Enemies\Army_Knife.cpp">
+      <Filter>Objects\Enemies</Filter>
+    </ClCompile>
+    <ClCompile Include="Objects\Enemies\Army_Shotgun.cpp">
+      <Filter>Objects\Enemies</Filter>
+    </ClCompile>
+    <ClCompile Include="Objects\Enemies\Bullet.cpp">
+      <Filter>Objects\Enemies</Filter>
+    </ClCompile>
+    <ClCompile Include="Objects\Enemies\Lazer.cpp">
+      <Filter>Objects\Enemies</Filter>
+    </ClCompile>
+    <ClCompile Include="GameControllers\Animation.cpp">
       <Filter>GameControllers</Filter>
     </ClCompile>
-    <ClCompile Include="GameControllers\GameScene.cpp">
+    <ClCompile Include="GameControllers\GameGlobal.cpp">
       <Filter>GameControllers</Filter>
     </ClCompile>
-    <ClCompile Include="GameControllers\Scene.cpp">
+    <ClCompile Include="GameControllers\GameMap.cpp">
       <Filter>GameControllers</Filter>
     </ClCompile>
-    <ClCompile Include="GameControllers\ResourcesManager.cpp">
+    <ClCompile Include="GameControllers\GameTime.cpp">
       <Filter>GameControllers</Filter>
     </ClCompile>
     <ClCompile Include="GameControllers\Point.cpp">
       <Filter>GameControllers</Filter>
     </ClCompile>
-    <ClCompile Include="Animation.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="GameControllers\ResourcesManager.cpp">
+      <Filter>GameControllers</Filter>
     </ClCompile>
-    <ClCompile Include="Army_Knife.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="GameControllers\SceneManager.cpp">
+      <Filter>GameControllers</Filter>
     </ClCompile>
-    <ClCompile Include="Army_Shotgun.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="GameControllers\SoundManager.cpp">
+      <Filter>GameControllers</Filter>
     </ClCompile>
-    <ClCompile Include="GameGlobal.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Lazer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="GameTime.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Bullet.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="GameMap.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="SoundManager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="MenuScene.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="StopTheWar.cpp">
+      <Filter>Resource Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

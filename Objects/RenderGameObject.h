@@ -2,8 +2,8 @@
 #include "GameObject.h"
 #include <iostream>
 #include <string>
-#include "../Animation.h"
-#include "../GameGlobal.h"
+#include "../../GameControllers/Animation.h"
+#include "../../GameControllers/GameGlobal.h"
 
 
 class RenderGameObject :public GameObject
